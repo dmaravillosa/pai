@@ -23,6 +23,8 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/status', [App\Http\Controllers\HomeController::class, 'status'])->name('status');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 // Teachers
 Route::prefix('teachers')->group(function () {
