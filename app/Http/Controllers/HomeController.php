@@ -52,24 +52,4 @@ class HomeController extends Controller
     {
         return view('status');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function about()
-    {
-        return view('about');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function contact()
-    {
-        return view('contact');
-    }
 }
