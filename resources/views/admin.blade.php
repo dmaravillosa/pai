@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="border mt-2 p-3 rounded">
+            <div class="border mt-2 p-3 rounded bg-white">
                 <div class="row">
                     <div class="col-md-6">
                         <h5><strong>Teachers</strong></h5>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="border mt-2 p-3 rounded">
+            <div class="border mt-2 p-3 rounded bg-white">
                 <div class="row">
                     <div class="col-md-6">
                         <h5><strong>Events</strong></h5>

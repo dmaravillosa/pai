@@ -21,6 +21,13 @@
 
     <!-- Font Awesome 5 -->
     <script src="https://kit.fontawesome.com/e418ef6728.js" crossorigin="anonymous"></script>
+
+    <style>
+    
+    body {
+        background-color: #f4f0ea;
+    }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -45,7 +52,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <!-- <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a> -->
                                 </li>
                             @endif
                             
