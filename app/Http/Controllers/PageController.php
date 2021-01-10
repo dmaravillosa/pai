@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Update;
-use App\Models\User;
 
 class PageController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function events()
+    {
+        $events = Update::all();
+        return view('welcome')->with('events', $events);
+    }
+
     /**
      * Show the application dashboard.
      *
