@@ -47,6 +47,14 @@
             pointer-events: none;
             color: #aaa;
         }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +108,19 @@
                 </div>
             </div>
         </main>
+
+        <div class="footer mb-4">
+            <a class="text-dark" href="https://www.facebook.com/papayaacademy" target="_blank">
+            <i class="fab fa-facebook"></i> Papaya Academy Inc.</a>  
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <a class="text-dark" href="http://www.papaya-academy.magix.net/contact.htm" target="_blank">
+            <i class="fab fa-chrome"></i> Papaya Academy Inc.</a>  
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <a target="_blank">
+            <i class="far fa-envelope"></i> papayaacademy@yahoo.com</a>  
+        </div>
     </div>
 </body>
 </html>
