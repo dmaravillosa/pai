@@ -8,6 +8,21 @@
                 <div class="col-md-6 mt-2">
                     <h4>Admin Panel</h4>
                 </div>
+
+                <div class="col-md-6 mt-2 text-right">
+                    <form action="/syc/update/{{ $config->id }}" method="POST">
+                        @csrf
+                        S.Y. {{ $config->school_year }} (
+                        <select name="quarter">
+                            <option value="1" {{ $config->quarter == '1' ? 'selected' : '' }}>1st</option>
+                            <option value="2" {{ $config->quarter == '2' ? 'selected' : '' }}>2nd</option>
+                            <option value="3" {{ $config->quarter == '3' ? 'selected' : '' }}>3rd</option>
+                            <option value="4" {{ $config->quarter == '4' ? 'selected' : '' }}>4th</option>
+                        </select>
+                        Quarter)
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-sync"></i></button>
+                    </form>
+                </div>
             </div>
 
             <hr>

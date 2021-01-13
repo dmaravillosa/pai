@@ -19,7 +19,7 @@
         @foreach($classrooms as $classroom)
         <div class="col-md-12 border mt-3 p-3 rounded bg-white">
             <div class="row">
-                <div class="col-md-11">
+                <div class="col-md-11 mt-1">
                     <h2>Grade {{ $classroom->level }}- {{ $classroom->name }}</h2>
                 </div>
                 <div class="col-md-1">

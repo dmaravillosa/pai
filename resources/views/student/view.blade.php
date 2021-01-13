@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12 mt-2">
             <div class="row">
-                <div class="col-md-6 mt-2">
+                <div class="col-md-1 mt-2">
+                    <a href="/home" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="col-md-10 mt-2 text-center">
                     <h4>Student List</h4>
                 </div>
             </div>

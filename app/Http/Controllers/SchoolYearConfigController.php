@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
 use App\Models\SchoolYearConfig;
-use App\Models\Student;
 use Illuminate\Http\Request;
 
-class GradesController extends Controller
+class SchoolYearConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function view($id)
+    public function index()
     {
-        $student = Student::with('grades')->where('id', $id)->first();
-        $config = SchoolYearConfig::first();
-
-        return view('grades.view')
-            ->with('student', $student)
-            ->with('config', $config);
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class GradesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Grades $grades)
+    public function show($id)
     {
         //
     }
@@ -59,10 +52,10 @@ class GradesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grades $grades)
+    public function edit($id)
     {
         //
     }
@@ -71,21 +64,25 @@ class GradesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grades  $grades
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grades $grades)
+    public function update(Request $request, $id)
     {
-        //
+        $syc = SchoolYearConfig::where('id' , $id)->first();
+        $syc->quarter = $request->quarter;
+        $syc->save();
+
+        return redirect()->route('admin');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grades $grades)
+    public function destroy($id)
     {
         //
     }

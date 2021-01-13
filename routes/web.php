@@ -60,3 +60,8 @@ Route::prefix('updates')->group(function () {
     Route::post('/update/{id}', [App\Http\Controllers\UpdatesController::class, 'update'])->name('updates.update');
     Route::post('/delete/{id}', [App\Http\Controllers\UpdatesController::class, 'destroy'])->name('updates.destroy');
 });
+
+//SchoolYearConfig
+Route::prefix('syc')->group(function () {
+    Route::post('/update/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'update'])->name('syc.update');
+});

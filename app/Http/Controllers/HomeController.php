@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\SchoolYearConfig;
 use App\Models\Update;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,10 +29,13 @@ class HomeController extends Controller
     {
         $users = User::whereNotIn('name', ['Administrator', 'Principal'])->orderBy('created_at', 'desc')->get();
         $events = Update::all();
+        $config = SchoolYearConfig::first();
+
         // dd($users->toArray());
         return view('admin')
             ->with('users', $users)
-            ->with('events', $events);
+            ->with('events', $events)
+            ->with('config', $config);
     }
 
     /**
