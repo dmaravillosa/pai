@@ -21,6 +21,24 @@ class StudentController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list(Request $request)
+    {
+        $filters =  explode(' ', strtolower($request->filter));
+        $students = Student::where(function ($query) use($filters){
+                        foreach($filters as $filter){
+                            $query->orwhere('name', 'like',  '%' . $filter .'%');
+                        }
+                    })->get();
+
+        return view('student.view')
+            ->with('students', $students);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

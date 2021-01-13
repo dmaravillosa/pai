@@ -95,11 +95,19 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7">
                         <img width="250" src="{{ asset('pai-logo.png') }}">
+                        
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <span class="fas fa-search form-control-icon"></span>
-                            <input type="text" class="form-control" style="border-radius: 50px;" placeholder="Student Name/Number">
+                            <form action="/students/list" method="GET">
+                                <div class="input-group">
+                                    <span class="fas fa-user form-control-icon"></span>
+                                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Student Name">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary rounded ml-2"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 

@@ -45,6 +45,7 @@ Route::prefix('classroom')->group(function () {
 // Students
 Route::prefix('students')->group(function () {
     Route::get('/view/{id}', [App\Http\Controllers\StudentController::class, 'view'])->name('students.view');
+    Route::get('/list', [App\Http\Controllers\StudentController::class, 'list'])->name('students.list');
 });
 
 //Grades
