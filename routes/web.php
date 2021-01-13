@@ -25,7 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/status', [App\Http\Controllers\HomeController::class, 'status'])->name('status');
 
 // PageController
-
 Route::get('/', [App\Http\Controllers\PageController::class, 'events'])->name('events');
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
@@ -41,6 +40,16 @@ Route::prefix('teachers')->group(function () {
 Route::prefix('classroom')->group(function () {
     Route::get('/view', [App\Http\Controllers\ClassroomController::class, 'view'])->name('classroom.view');
     Route::post('/import', [App\Http\Controllers\ClassroomController::class, 'import'])->name('classroom.import');
+});
+
+// Students
+Route::prefix('students')->group(function () {
+    Route::get('/view/{id}', [App\Http\Controllers\StudentController::class, 'view'])->name('students.view');
+});
+
+//Grades
+Route::prefix('grades')->group(function () {
+    Route::get('/view/{id}', [App\Http\Controllers\GradesController::class, 'view'])->name('grades.view');
 });
 
 //Updates

@@ -16,22 +16,24 @@
             <hr>
         </div>
 
-        <div class="col-md-12 border mt-3 p-3 rounded">
+        @foreach($classrooms as $classroom)
+        <div class="col-md-12 border mt-3 p-3 rounded bg-white">
             <div class="row">
                 <div class="col-md-11">
-                    <h2> Grade 2 - Mangga</h2>
+                    <h2>Grade {{ $classroom->level }}- {{ $classroom->name }}</h2>
                 </div>
                 <div class="col-md-1">
-                    <a href="/delete" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="/students/view/{{ $classroom->id }}" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
                 </div>
                 <div class="col-md-11">
-                    <h5> 20 Students </h5>
+                    <h5> {{ count($classroom->students) }} Students </h5>
                 </div>
                 <div class="col-md-1">
                     <a href="/delete" class="btn btn-block btn-danger"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 @endsection

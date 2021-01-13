@@ -3,17 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Classroom;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ClassroomImport implements ToModel
+class ClassroomImport implements WithMultipleSheets 
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function sheets(): array
     {
-        return $row;
+        return [
+            5 => new SummarySheet(),
+        ];
     }
 }

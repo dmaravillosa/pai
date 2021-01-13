@@ -27,6 +27,12 @@
     body {
         background-color: #f4f0ea;
     }
+
+    .table td.fit, 
+    .table th.fit {
+        white-space: nowrap;
+        width: 1%;
+    }
     </style>
 </head>
 <body>

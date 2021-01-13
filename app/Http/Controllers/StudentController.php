@@ -12,9 +12,12 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function view($id)
     {
-        //
+        $students = Student::where('classroom_id', $id)->get();
+
+        return view('student.view')
+            ->with('students', $students);
     }
 
     /**

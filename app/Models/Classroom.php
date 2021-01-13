@@ -15,9 +15,14 @@ class Classroom extends Model
      * @var array
      */
     protected $fillable = [
+        'level',
         'name',
         'school_year',
         'user_id', //teacher
-        'grade_id' 
     ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
@@ -12,9 +13,12 @@ class GradesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function view($id)
     {
-        //
+        $student = Student::with('grades')->where('id', $id)->first();
+
+        return view('grades.view')
+            ->with('student', $student);
     }
 
     /**
