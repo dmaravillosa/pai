@@ -68,10 +68,10 @@
             <div class="border mt-2 p-3 rounded bg-white">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5><strong>Events</strong></h5>
+                        <h5><strong>Announcements</strong></h5>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a class="btn btn-success btn-sm" href="/updates/create"><i class="fas fa-plus"></i> Create Updates</a>
+                        <a class="btn btn-success btn-sm" href="/updates/create"><i class="fas fa-plus"></i> Create Announcements</a>
                     </div>
                 </div>
 
