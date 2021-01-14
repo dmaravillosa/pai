@@ -75,7 +75,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(auth()->user()->name == 'Administrator' || auth()->user()->name == 'Principal')
-                                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Create Teacher')  }}</a>
+                                        <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Admin Panel')  }}</a>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

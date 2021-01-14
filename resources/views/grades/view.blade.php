@@ -32,210 +32,29 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($grades as $key => $quarters)
                 <tr>
-                    <td>Mother Tongue</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'mothertongue'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
+                    <td>{{ $key }}</td>
+                    @foreach($quarters as $key => $grade)
+                        @if(substr($key, 0, 1) <= $config->quarter) <!-- dont display grades for future quarters -->
+                            @if($key == 'GRADE' && $config->quarter != 4) <!-- dont display final grade if quarter is not 4th -->
                                 <td>-</td>
+                            @else
+                                <td>{{ $grade }}</td>
                             @endif
                         @else
                             <td>-</td>
                         @endif
                     @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Filipino</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'filipino'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    @if($config->quarter == 4 && $grade->quarter == 'GRADE')
-                        <td class="{{ $grade->grade >= 75 ? 'text-success' : 'text-danger' }}"><strong>{{ $grade->grade >= 75 ? 'PASSED' : 'FAILED' }}</strong></td>
+                    @if($config->quarter == 4)
+                        <td class="{{ $quarters['GRADE'] >= 75 ? 'text-success' : 'text-danger' }}"><b>{{ $quarters["GRADE"] >= 75 ? 'PASSED' : 'FAILED' }}</b></td>
                     @else
                         <td>-</td>
                     @endif
                 </tr>
-                <tr>
-                    <td>English</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'english'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Mathematics</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'mathematics'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Araling Panlipunan (AP)</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'aralingpanlipunan'))
-                            @if($grade->grade != '60')
-                                <td>{{ $grade->grade }}</td>
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Edukasyon sa Pagpapakatao (EsP)</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'edukasyonsapagpapakatao'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Music</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'music'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Arts</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'arts'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>P.E.</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'pe'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Health</td>
-                    @foreach($student->grades as $grade)
-                        @if(str_contains(str_replace(' ', '', strtolower($grade->subject)), 'health'))
-                            @if($grade->grade != '60')
-                                @if($grade->quarter == 'GRADE' && $config->quarter != 4)
-                                    <td>-</td>
-                                @else
-                                    <td>{{ $grade->grade }}</td>
-                                @endif
-                            @else
-                                <td>-</td>
-                            @endif
-                        @else
-                            <td>-</td>
-                        @endif
-                    @endforeach
-                    <td>-</td>
-                </tr>
+                @endforeach
             </tbody>
-            
-        
         </table>
-
-        <!-- @foreach($student->grades as $grade)
-        <div class="col-md-6 border mt-3 p-3 rounded bg-white">
-            <div class="row">
-                <div class="col-md-10">
-                    <h2></h2>
-                </div>
-            </div>
-        </div>
-        @endforeach -->
     </div>
 </div>
 @endsection

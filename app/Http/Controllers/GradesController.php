@@ -19,8 +19,25 @@ class GradesController extends Controller
         $student = Student::with('grades')->where('id', $id)->first();
         $config = SchoolYearConfig::first();
 
+        $grades = [];
+        foreach(config('constants.subjects') as $subject)
+        {
+            $grades[strtoupper($subject)] = [];
+            foreach(config('constants.quarters') as $quarter)
+            {
+                $grades[strtoupper($subject)][$quarter] = '-';
+            }
+        }        
+
+        foreach($student->grades as $grade)
+        {
+            if(isset($grade->grade))
+            $grades[strtoupper($grade->subject)][$grade->quarter] = $grade->grade;
+        }
+
         return view('grades.view')
             ->with('student', $student)
+            ->with('grades', $grades)
             ->with('config', $config);
     }
 
