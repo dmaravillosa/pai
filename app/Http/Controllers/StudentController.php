@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -38,14 +39,25 @@ class StudentController extends Controller
             ->with('students', $students);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function lock($id, $unlock = 0)
     {
-        //
+        return view('student.lock')
+            ->with('student_id', $id)
+            ->with('unlock', $unlock);
+    }
+
+
+    public function unlock(Request $request, $id)
+    {
+        $student = Student::where('id', $id)->first();
+
+
+        if(Hash::check($request->password, $student->password, []))
+        {
+            return redirect('/grades/view/' . $id);
+        }
+        
+        return view('status')->with('message', 'Incorrect Password!');
     }
 
     /**
@@ -88,9 +100,19 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Student $student, $id)
     {
-        //
+        if($request->password == $request->password_confirmation){
+            $student = Student::where('id', $id)->first();
+            $student->password = bcrypt($request->password);
+            $student->save();
+
+            return view('status')->with('message', 'Password successfully created');
+        }
+        
+        return view('status')->with('message', 'Password does not match');
+        
+
     }
 
     /**

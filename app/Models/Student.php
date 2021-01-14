@@ -16,7 +16,8 @@ class Student extends Model
      */
     protected $fillable = [
         'name',
-        'classroom_id'
+        'classroom_id',
+        'password'
     ];
 
     public function classroom()
