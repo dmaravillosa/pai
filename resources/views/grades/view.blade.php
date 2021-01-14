@@ -58,6 +58,38 @@
             </table>
         </div>
 
+
+        <div class="col-md-12 mt-2">
+            <hr>
+            @auth
+                <form action="/students/remark/{{ $student->id }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-10 mt-2">
+                            <h4>Remarks</h4>
+                        </div>
+                        
+                        <div class="col-md-2 text-right">
+                            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+                        </div>
+                    </div>
+            
+                    <textarea class="form-control" name="remarks">{{ $student->remarks }}</textarea>
+                </form>
+            @else
+                <div class="row">
+                    <div class="col-md-10 mt-2">
+                        <h4>Remarks</h4>
+                    </div>
+
+                    <div class="col-md-12 mt-2 bg-white">
+                        <h5 class="mt-2">{{ $student->remarks ? $student->remarks : 'No teacher remarks.' }}</h5>
+                    </div>
+                </div>
+
+            @endauth
+        </div>
+
         <hr>
     </div>
 </div>

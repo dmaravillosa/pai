@@ -60,6 +60,14 @@ class StudentController extends Controller
         return view('status')->with('message', 'Incorrect Password!');
     }
 
+    public function remark(Request $request, $id)
+    {
+        $student = Student::where('id', $id)->first();
+        $student->remarks = $request->remarks;
+        $student->save();
+
+        return redirect('/grades/view/' . $id);
+    }
     /**
      * Store a newly created resource in storage.
      *

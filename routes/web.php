@@ -49,6 +49,7 @@ Route::prefix('students')->group(function () {
     Route::get('/lock/{id}/{unlock?}', [App\Http\Controllers\StudentController::class, 'lock'])->name('students.lock');
     Route::post('/unlock/{id}', [App\Http\Controllers\StudentController::class, 'unlock'])->name('students.unlock');
     Route::post('/update/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('students.update');
+    Route::post('/remark/{id}', [App\Http\Controllers\StudentController::class, 'remark'])->name('students.remark');
 });
 
 //Grades

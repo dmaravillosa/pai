@@ -33,22 +33,6 @@
             white-space: nowrap;
             width: 1%;
         }
-
-        .form-group .form-control {
-            padding-left: 2.375rem;
-        }
-
-        .form-group .form-control-icon {
-            position: absolute;
-            z-index: 2;
-            display: block;
-            width: 2.375rem;
-            height: 2.375rem;
-            line-height: 2.375rem;
-            text-align: center;
-            pointer-events: none;
-            color: #aaa;
-        }
     </style>
 </head>
 <body>
