@@ -29,7 +29,7 @@
                     <h5> {{ count($classroom->students) }} Students </h5>
                 </div>
                 <div class="col-md-1">
-                    <a href="/delete" class="btn btn-block btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="/classroom/delete/{{ $classroom->id }}" class="btn btn-block btn-danger"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
         </div>

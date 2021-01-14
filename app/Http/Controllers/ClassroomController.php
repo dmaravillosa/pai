@@ -26,9 +26,12 @@ class ClassroomController extends Controller
         return view('classroom.view');
     }
 
-    public function list()
+    public function delete($id)
     {
+        $classroom = Classroom::where('id', $id)->first();
+        $classroom->delete();
 
+        return view('status')->with('message', 'Classroom successfully deleted.');
     }
 
     public function import(Request $request)

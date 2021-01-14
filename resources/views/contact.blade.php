@@ -4,7 +4,7 @@
 <div class="col-md-10 mt-3 bg-white">
     <div class="row m-2 justify-content-center">
         <div class="col-md-3">
-            <a class="text-dark" href="{{ url('/') }}">Events</a>
+            <a class="text-dark" href="{{ url('/') }}">Announcements</a>
         </div>
         <div class="col-md-3">
             <a class="text-dark" href="{{ route('about') }}">About</a>
@@ -34,7 +34,7 @@
     <p>
         Email Address: <span class="text-primary"> papayaacademy@yahoo.com</span> <br>
         Telephone #: (02) 997-2894 <br>
-        Facebook Page: <span class="text-primary"> https://www.facebook.com/papayaacademy</span>
+        Facebook Page: <span class="text-primary"> <a target="_blank" href="https://www.facebook.com/papayaacademy">https://www.facebook.com/papayaacademy</a></span>
     </p>
 </div>
 

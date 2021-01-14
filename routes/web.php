@@ -40,6 +40,7 @@ Route::prefix('teachers')->group(function () {
 Route::prefix('classroom')->group(function () {
     Route::get('/view', [App\Http\Controllers\ClassroomController::class, 'view'])->name('classroom.view');
     Route::post('/import', [App\Http\Controllers\ClassroomController::class, 'import'])->name('classroom.import');
+    Route::get('/delete/{id}', [App\Http\Controllers\ClassroomController::class, 'delete'])->name('classroom.delete');
 });
 
 // Students
