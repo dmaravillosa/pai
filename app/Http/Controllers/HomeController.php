@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function admin()
     {
-        $users = User::whereNotIn('name', ['Administrator', 'Principal'])->orderBy('created_at', 'desc')->get();
+        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
         $events = Update::all();
         $config = SchoolYearConfig::first();
 

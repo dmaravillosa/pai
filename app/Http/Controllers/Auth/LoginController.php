@@ -40,9 +40,9 @@ class LoginController extends Controller
     }
 
     public function redirectTo() {
-        $name = Auth::user()->name; 
+        $id = Auth::user()->id; 
         
-        if($name == 'Administrator' || $name == 'Principal'){
+        if($id == 1 || $id == 2){
             return '/admin';
         }
 

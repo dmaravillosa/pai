@@ -13,7 +13,7 @@
                 </div>
                 
                 @auth
-                    @if(auth()->user()->name != 'Administrator' && auth()->user()->name != 'Principal')
+                    @if(auth()->user()->id != 1 && auth()->user()->id != 2)
                         <div class="col-md-3 mt-2 text-right">
                             <a class="btn btn-success" href="/classroom/view"><i class="fas fa-plus"></i> Update Grades</a>
                         </div>
@@ -39,7 +39,7 @@
         <div class="col-md-12 border mt-3 p-3 rounded {{ $student->password ? 'bg-secondary text-white' : 'bg-white' }}">
             <div class="row">
                 @auth
-                    @if(auth()->user()->name == 'Administrator' || auth()->user()->name == 'Principal')
+                    @if(auth()->user()->id == 1 || auth()->user()->id == 2)
                         <div class="col-md-10 mt-1">
                             (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) <h2>{{ $student->name }}</h2>
                         </div>

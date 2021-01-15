@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <form method="post" action="/classroom/import" enctype="multipart/form-data">
             @csrf
-                <input type="file" name="excel">
+                <input type="file" name="excel[]" multiple>
                 <br><br>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
