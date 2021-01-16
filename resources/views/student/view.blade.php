@@ -6,7 +6,7 @@
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-3 mt-2">
-                    <a href="{{ isset(auth()->user()->id) ? '/home' : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->id == 1 || auth()->user()->id == 2 ? '/admin' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-6 mt-2 text-center">
                     <h4>Student List</h4>
@@ -30,6 +30,19 @@
                         </div>
                     @endif
                 @endauth
+
+                @guest
+                    <div class="col-md-3 mt-2 text-right">
+                        <form action="/students/list" method="GET">
+                            <div class="input-group">
+                                <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Student Name">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary rounded ml-2"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                @endguest
             </div>
 
             <hr>

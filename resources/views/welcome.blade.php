@@ -18,7 +18,7 @@
 <div class="col-md-10 ">
     <div class="row justify-content-center">
         @if(!isset($events[0]))
-            <h5 class="mt-3">No current events.</h5>
+            <h5 class="mt-3">No current announcements.</h5>
         @else
             @foreach($events as $event)
                 <div class="col-md-5 mt-4">

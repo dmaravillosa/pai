@@ -78,7 +78,7 @@
                 <hr>
 
                 @if(!isset($events[0]))
-                    <p>No saved events.</p>
+                    <p>No saved announcements.</p>
                 @else
                     @foreach($events as $event)
                         <div class="row m-1 p-2 border">
