@@ -9,7 +9,11 @@
                     <a href="/students/list" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-10 mt-2 text-center">
-                    <h4>Set Student's Grade Password</h4>
+                    @guest 
+                        <h4>Enter Student's Grade Password</h4>
+                    @else
+                        <h4>Set Student's Grade Password</h4>
+                    @endguest
                 </div>
             </div>
 
