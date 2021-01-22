@@ -68,4 +68,16 @@ class HomeController extends Controller
     {
         return view('status');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function confirm(Request $request)
+    {
+        return view('confirm')
+            ->with('endpoint', $request->endpoint)
+            ->with('message', 'Are you sure you want to delete this record?');
+    }
 }

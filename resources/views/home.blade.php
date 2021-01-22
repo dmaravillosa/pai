@@ -31,7 +31,11 @@
                     <h5> {{ count($classroom->students) }} Students </h5>
                 </div>
                 <div class="col-md-1">
-                    <a href="/classroom/delete/{{ $classroom->id }}" class="btn btn-block btn-danger"><i class="fas fa-trash"></i></a>
+                    <form action="/confirm" method="GET">
+                        @csrf
+                        <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
+                        <button type="submit" class="btn btn-sm btn-block btn-danger mt-1"><i class="fas fa-trash"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

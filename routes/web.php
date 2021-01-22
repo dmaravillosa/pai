@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/status', [App\Http\Controllers\HomeController::class, 'status'])->name('status');
+Route::get('/confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');
 
 // PageController
 Route::get('/', [App\Http\Controllers\PageController::class, 'events'])->name('events');
@@ -40,7 +41,7 @@ Route::prefix('teachers')->group(function () {
 Route::prefix('classroom')->group(function () {
     Route::get('/view', [App\Http\Controllers\ClassroomController::class, 'view'])->name('classroom.view');
     Route::post('/import', [App\Http\Controllers\ClassroomController::class, 'import'])->name('classroom.import');
-    Route::get('/delete/{id}', [App\Http\Controllers\ClassroomController::class, 'delete'])->name('classroom.delete');
+    Route::post('/delete/{id}', [App\Http\Controllers\ClassroomController::class, 'delete'])->name('classroom.delete');
 });
 
 // Students

@@ -53,8 +53,9 @@
                             <div class="col-md-2">
                                 <a href="/teachers/edit/{{ $user->id }}" class="btn btn-sm btn-block btn-primary m-0"><i class="fas fa-edit"></i></a>
 
-                                <form action="/teachers/delete/{{ $user->id }}" method="POST">
+                                <form action="/confirm" method="GET">
                                     @csrf
+                                    <input type="hidden" name="endpoint" value="/teachers/delete/{{ $user->id }}">
                                     <button type="submit" class="btn btn-sm btn-block btn-danger mt-1"><i class="fas fa-trash"></i></button>
                                 </form>
                             </div>
@@ -89,8 +90,9 @@
                             <div class="col-md-2">
                                 <a href="/updates/edit/{{ $event->id }}" class="btn btn-sm btn-block btn-primary m-0"><i class="fas fa-edit"></i></a>
 
-                                <form action="/updates/delete/{{ $event->id }}" method="POST">
+                                <form action="/confirm" method="GET">
                                     @csrf
+                                    <input type="hidden" name="endpoint" value="/updates/delete/{{ $event->id }}">
                                     <button type="submit" class="btn btn-sm btn-block btn-danger mt-1"><i class="fas fa-trash"></i></button>
                                 </form>
                             </div>

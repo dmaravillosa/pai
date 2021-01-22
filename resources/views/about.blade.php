@@ -17,7 +17,7 @@
 
 <div class="col-md-10 mt-3">
 
-    <img src="http://via.placeholder.com/900x200">
+    <img class="img-fluid" src="http://via.placeholder.com/900x200">
     
     <br><br>
 
