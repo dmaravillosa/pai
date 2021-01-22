@@ -45,10 +45,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
+        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        {
+            $classrooms = Classroom::with('students')->get();
+        }
+        else
+        {
+            $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
+        }
 
         return view('home')
-            ->with('classrooms', $classrooms);
+            ->with('classrooms', $classrooms)
+            ->with('user_id', auth()->user()->id);
     }
 
     /**

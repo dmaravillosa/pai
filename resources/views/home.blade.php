@@ -9,7 +9,9 @@
                     <h4>Home Panel</h4>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a class="btn btn-success" href="/classroom/view"><i class="fas fa-plus"></i> Create Classroom</a>
+                    @if($user_id != 1 && $user_id != 2)
+                        <a class="btn btn-success" href="/classroom/view"><i class="fas fa-plus"></i> Create Classroom</a>
+                    @endif
                 </div>
             </div>
 
