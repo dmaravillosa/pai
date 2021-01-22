@@ -17,6 +17,12 @@ class GradesController extends Controller
     public function view($id)
     {
         $student = Student::with('grades')->where('id', $id)->first();
+        if(auth()->user() == null)
+        {
+            $student->seen = 1;
+            $student->save();
+        }
+
         $config = SchoolYearConfig::first();
 
         $grades = [];

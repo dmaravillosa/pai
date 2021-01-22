@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\SchoolYearConfig;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SchoolYearConfigController extends Controller
 {
@@ -72,6 +74,10 @@ class SchoolYearConfigController extends Controller
         $syc = SchoolYearConfig::where('id' , $id)->first();
         $syc->quarter = $request->quarter;
         $syc->save();
+
+        $students = DB::table('students')->update([
+            'seen' => 0
+        ]);
 
         return redirect()->route('admin');
     }

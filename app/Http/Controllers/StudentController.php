@@ -48,7 +48,6 @@ class StudentController extends Controller
             }
         }
 
-    
         return view('student.lock')
             ->with('student_id', $id)
             ->with('unlock', $unlock);

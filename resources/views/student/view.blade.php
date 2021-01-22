@@ -54,7 +54,13 @@
                 @auth
                     @if(auth()->user()->id == 1 || auth()->user()->id == 2)
                         <div class="col-md-10 mt-1">
-                            (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) <h2>{{ $student->name }}</h2>
+                            <span>
+                                (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
+                                @if($student->seen)
+                                    (<i class="fas fa-eye fa-sm"></i>)
+                                @endif
+                            </span>
+                            <h2>{{ $student->name }}</h2>
                         </div>
                         <div class="col-md-1 mt-3">
                             <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
@@ -80,9 +86,9 @@
                     </div>
                     <div class="col-md-1 mt-3">
                         @if($student->password)
-                            <a href="/students/lock/{{ $student->id }}/1" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
+                            <a href="/students/lock/{{ $student->id }}/1" class="btn btn-block btn-primary"><i class="fas fa-id-card-alt"></i></a>
                         @else
-                            <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
+                            <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-id-card-alt"></i></a>
                         @endif
                     </div>
                 @endauth
