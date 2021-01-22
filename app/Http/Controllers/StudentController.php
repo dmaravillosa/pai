@@ -41,9 +41,18 @@ class StudentController extends Controller
 
     public function lock($id, $unlock = 0)
     {
+        if(auth()->user() != null){
+            if((auth()->user()->id != 1 && auth()->user()->id != 2))
+            {
+                return redirect('/grades/view/' . $id);
+            }
+        }
+
+    
         return view('student.lock')
             ->with('student_id', $id)
             ->with('unlock', $unlock);
+        
     }
 
 

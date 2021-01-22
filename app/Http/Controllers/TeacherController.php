@@ -74,6 +74,18 @@ class TeacherController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        
+        if($request->password){
+            if($request->password == $request->password_confirmation)
+            {
+                $user->password = bcrypt($request->password);
+            }
+            else{
+                return view('status')->with('message', 'Password does not match!');
+            }
+            
+        }
+        
         $user->save();
 
         return view('status')->with('message', 'Account Successfully Updated!');
