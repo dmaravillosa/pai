@@ -21,6 +21,20 @@ return [
         2 => '3rd Quarter',
         3 => '4th Quarter',
         4 => 'GRADE',
-    ]
+    ],
+
+    'teachers' =>
+        [
+            'Mother Tongue' => 'Ms. Katrina A. Ocampo',
+            'Filipino' => 'Ms. Daina Marie A. Roma',
+            'English' => 'Ms. Marie Sean A. Barbacena',
+            'Mathematics' => 'Ms. Leizl R. Mercado',
+            'Araling Panlipunan' => 'Ms. Aileen B. Villanueva',
+            'Edukasyon Sa Pagpapakatao' => 'Ms. Geenie G. Ramos',
+            'Music' => 'Sir Jerico T. Santos',
+            'Arts' => 'Sir Jerico T. Santos',
+            'Pe' => 'Sir Jerico T. Santos',
+            'Health' => 'Sir Jerico T. Santos'
+        ]
 
 ];

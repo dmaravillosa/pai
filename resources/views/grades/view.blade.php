@@ -35,7 +35,11 @@
                 <tbody>
                     @foreach($grades as $key => $quarters)
                     <tr>
-                        <td>{{ $key }}</td>
+                        <td>
+                        <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Teacher: {{ config('constants.teachers')[ucwords(strtolower($key))] }}">
+                            {{ $key }}
+                        </button>
+                        </td>
                         @foreach($quarters as $key => $grade)
                             @if(substr($key, 0, 1) <= $config->quarter) <!-- dont display grades for future quarters -->
                                 @if($key == 'GRADE' && $config->quarter != 4) <!-- dont display final grade if quarter is not 4th -->

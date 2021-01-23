@@ -21,6 +21,9 @@
 
     <!-- Font Awesome 5 -->
     <script src="https://kit.fontawesome.com/e418ef6728.js" crossorigin="anonymous"></script>
+    
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <style>
     
