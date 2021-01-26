@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\SchoolYearConfig;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
@@ -16,12 +18,14 @@ class GradesController extends Controller
      */
     public function view($id)
     {
-        $student = Student::with('grades')->where('id', $id)->first();
+        $student = Student::with(['grades', 'classroom'])->where('id', $id)->first();
         if(auth()->user() == null)
         {
             $student->seen = 1;
             $student->save();
         }
+        
+        $teacher = User::where('id', $student->classroom()->first()->user_id)->first()->name;
 
         $config = SchoolYearConfig::first();
 
@@ -42,6 +46,7 @@ class GradesController extends Controller
         }
 
         return view('grades.view')
+            ->with('teacher', $teacher)
             ->with('student', $student)
             ->with('grades', $grades)
             ->with('config', $config);

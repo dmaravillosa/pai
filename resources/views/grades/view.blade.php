@@ -9,7 +9,7 @@
                     <a href="/students/view/{{ $student->classroom_id }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-10 mt-2 text-center">
-                    <h4>{{ $student->name }}</h4>
+                    <h4>{{ $student->name }}</h4> <small>(Adviser: {{ $teacher }})</small>
                 </div>
             </div>
 
