@@ -70,7 +70,7 @@ class ClassroomController extends Controller
                     else
                     {
                         
-                        if(is_numeric($collection[5][$x][1]) || $collection[5][$x][1] == ' ')
+                        if(preg_match('~[0-9]~', $collection[5][$x][1]) || is_numeric($collection[5][$x][1]) || $collection[5][$x][1] == ' ')
                         {
                             return view('status')->with('message', 'There is an invalid name on your students, please reupload grade sheet'); 
                         }
