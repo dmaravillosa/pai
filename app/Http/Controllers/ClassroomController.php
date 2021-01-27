@@ -152,11 +152,12 @@ class ClassroomController extends Controller
                         $final_grade->grade = $collection[5][$x][21];
                         $final_grade->save();  
 
-                        return view('status')->with('message', 'Excel grade upload successful!');
+                        
                     }
 
                 } 
             }
+            return view('status')->with('message', 'Excel grade upload successful!');
         }
 
         return view('status')->with('message', 'There is an invalid name on your students, please reupload grade sheet'); 
