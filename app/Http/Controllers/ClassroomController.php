@@ -39,9 +39,19 @@ class ClassroomController extends Controller
         $files = $request->file('excel');
         foreach($files as $file){
             
+            if($file->getMimeType() != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            {
+                return view('status')->with('message', 'Wrong grade sheet please check your excel.'); 
+            }
+
             $collection = Excel::toArray(new ClassroomImport,  $file);
 
             $grade_section = explode("-", str_replace(' ', '', $collection[5][7]["10"]));
+
+            if(!isset($grade_section[1]))
+            {
+                return view('status')->with('message', 'Please check your section data.'); 
+            }
 
             //create classroom
             $classroom = Classroom::firstOrCreate([
@@ -59,6 +69,12 @@ class ClassroomController extends Controller
                     }
                     else
                     {
+                        
+                        if(is_numeric($collection[5][$x][1]) || $collection[5][$x][1] == ' ')
+                        {
+                            return view('status')->with('message', 'There is an invalid name on your students, please reupload grade sheet'); 
+                        }
+
                         //create student if does not exist
                         $student = Student::firstOrCreate([
                             'name' => $collection[5][$x][1],
@@ -135,13 +151,15 @@ class ClassroomController extends Controller
                         $final_grade->school_year = $collection[5][7][22];
                         $final_grade->grade = $collection[5][$x][21];
                         $final_grade->save();  
+
+                        return view('status')->with('message', 'Excel grade upload successful!');
                     }
 
                 } 
             }
         }
 
-        return view('status')->with('message', 'Excel grade upload successful!');
+        return view('status')->with('message', 'There is an invalid name on your students, please reupload grade sheet'); 
 
         // for viewing excel return
         // $new = array();
