@@ -57,6 +57,10 @@ class GradesController extends Controller
             $attendances[$attendance->month . '-' . $attendance->type] = $attendance->score;
         }
 
+        $attendances['days_total'] = $student->attendance->where('type', 'days')->sum('score');
+        $attendances['present_total'] = $student->attendance->where('type', 'present')->sum('score');
+        $attendances['absent_total'] = $student->attendance->where('type', 'absent')->sum('score');
+
 
         return view('grades.view')
             ->with('teacher', $teacher)

@@ -185,6 +185,7 @@
                         @foreach(config('constants.months') as $month)
                             <th>{{ $month }}</th>
                         @endforeach
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,6 +198,7 @@
                                 <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'days'}}" value="{{ isset($attendances[$month . '-days']) ? $attendances[$month . '-days'] : '-' }}"></td>
                             @endguest
                         @endforeach
+                        <td>{{ isset($attendances['days_total']) ? $attendances['days_total'] : '-' }}</td>
                     </tr>
                     <tr>
                         <td>No. of days present</td>
@@ -207,6 +209,7 @@
                                 <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'present'}}" value="{{ isset($attendances[$month . '-present']) ? $attendances[$month . '-present'] : '' }}"></td>
                             @endguest
                         @endforeach
+                        <td>{{ isset($attendances['present_total']) ? $attendances['present_total'] : '-' }}</td>
                     </tr>
                     <tr>
                         <td>No. of days absent</td>
@@ -218,6 +221,7 @@
                                 
                             @endguest
                         @endforeach
+                        <td>{{ isset($attendances['absent_total']) ? $attendances['absent_total'] : '-' }}</td>
                     </tr>
                 </tbody>
             </table>
