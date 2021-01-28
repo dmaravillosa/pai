@@ -22,6 +22,9 @@
     <!-- Font Awesome 5 -->
     <script src="https://kit.fontawesome.com/e418ef6728.js" crossorigin="anonymous"></script>
 
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         body {
             background-color: #f4f0ea;

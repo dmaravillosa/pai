@@ -18,7 +18,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($user) ? $user->name : old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" pattern="^[a-zA-Z\s]*$" value="{{ isset($user) ? $user->name : old('name') }}" required autocomplete="name" autofocus oninvalid="setCustomValidity('Please input a proper name.')" onchange="try{setCustomValidity('')}catch(e){}">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

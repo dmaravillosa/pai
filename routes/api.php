@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('core')->group(function () {
+    Route::post('/update', [App\Http\Controllers\CoreValueController::class, 'update'])->name('core.update');
+});
+
+Route::prefix('attendance')->group(function () {
+    Route::post('/update', [App\Http\Controllers\AttendanceController::class, 'update'])->name('attendance.update');
+});

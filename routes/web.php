@@ -21,6 +21,8 @@ Auth::routes();
 
 // HomeController
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
+Route::get('/announcement', [App\Http\Controllers\HomeController::class, 'announcement'])->name('announcement');
+Route::get('/classess', [App\Http\Controllers\HomeController::class, 'classess'])->name('classess');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/status', [App\Http\Controllers\HomeController::class, 'status'])->name('status');
 Route::get('/confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');

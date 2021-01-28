@@ -60,8 +60,168 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <hr class="m-4">
         </div>
 
+        <div class="col-md-8">
+            <table class="table table-bordered text-center bg-white">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Core Values</th>
+                        <th rowspan="2">Behavior Statements</th>
+                        <th colspan="4">Quarter</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(config('constants.core_values') as $core_value => $description)
+                    <tr>
+                        @if(substr($core_value, -1) == 1)
+                            <td rowspan="{{ $core_value == 'makakalikasan1' ? 1 : 2 }}">{{ ucfirst(substr($core_value, 0, -1)) }}</td>
+                        @endif
+                        <td>{{ $description }}</td>
+                        <td>
+                            @guest
+                                {{ isset($core_values[$core_value . '1']) ? strtoupper($core_values[$core_value . '1']) : '-' }}
+                            @else
+                                <select onchange="updateCore(this);" name="{{ $core_value . '1'}}">
+                                    <option value=""></option>
+                                    <option value="ao" {{ isset($core_values[$core_value . '1']) ? ($core_values[$core_value . '1'] == 'ao' ? 'selected' : '') : '-' }}>AO</option>
+                                    <option value="so" {{ isset($core_values[$core_value . '1']) ? ($core_values[$core_value . '1'] == 'so' ? 'selected' : '') : '-' }}>SO</option>
+                                    <option value="ro" {{ isset($core_values[$core_value . '1']) ? ($core_values[$core_value . '1'] == 'ro' ? 'selected' : '') : '-' }}>RO</option>
+                                    <option value="no" {{ isset($core_values[$core_value . '1']) ? ($core_values[$core_value . '1'] == 'no' ? 'selected' : '') : '-' }}>NO</option>
+                                </select>
+                            @endguest
+                        </td>
+                        <td>
+                            @guest
+                                {{ isset($core_values[$core_value . '2']) ? strtoupper($core_values[$core_value . '2']) : '-' }}
+                            @else
+                                <select onchange="updateCore(this);" name="{{ $core_value . '2'}}">
+                                    <option value=""></option>
+                                    <option value="ao" {{ isset($core_values[$core_value . '2']) ? ($core_values[$core_value . '2'] == 'ao' ? 'selected' : '') : '-' }}>AO</option>
+                                    <option value="so" {{ isset($core_values[$core_value . '2']) ? ($core_values[$core_value . '2'] == 'so' ? 'selected' : '') : '-' }}>SO</option>
+                                    <option value="ro" {{ isset($core_values[$core_value . '2']) ? ($core_values[$core_value . '2'] == 'ro' ? 'selected' : '') : '-' }}>RO</option>
+                                    <option value="no" {{ isset($core_values[$core_value . '2']) ? ($core_values[$core_value . '2'] == 'no' ? 'selected' : '') : '-' }}>NO</option>
+                                </select>
+                            @endguest
+                        </td>
+                        <td>
+                            @guest
+                                {{ isset($core_values[$core_value . '3']) ? strtoupper($core_values[$core_value . '3']) : '-' }}
+                            @else
+                                <select onchange="updateCore(this);" name="{{ $core_value . '3'}}">
+                                    <option value=""></option>
+                                    <option value="ao" {{ isset($core_values[$core_value . '3']) ? ($core_values[$core_value . '3'] == 'ao' ? 'selected' : '') : '-' }}>AO</option>
+                                    <option value="so" {{ isset($core_values[$core_value . '3']) ? ($core_values[$core_value . '3'] == 'so' ? 'selected' : '') : '-' }}>SO</option>
+                                    <option value="ro" {{ isset($core_values[$core_value . '3']) ? ($core_values[$core_value . '3'] == 'ro' ? 'selected' : '') : '-' }}>RO</option>
+                                    <option value="no" {{ isset($core_values[$core_value . '3']) ? ($core_values[$core_value . '3'] == 'no' ? 'selected' : '') : '-' }}>NO</option>
+                                </select>
+                            @endguest
+                        </td>
+                        <td>
+                            @guest
+                                {{ isset($core_values[$core_value . '4']) ? strtoupper($core_values[$core_value . '4']) : '-' }}
+                            @else
+                                <select onchange="updateCore(this);" name="{{ $core_value . '4'}}">
+                                    <option value=""></option>
+                                    <option value="ao" {{ isset($core_values[$core_value . '4']) ? ($core_values[$core_value . '4'] == 'ao' ? 'selected' : '') : '-' }}>AO</option>
+                                    <option value="so" {{ isset($core_values[$core_value . '4']) ? ($core_values[$core_value . '4'] == 'so' ? 'selected' : '') : '-' }}>SO</option>
+                                    <option value="ro" {{ isset($core_values[$core_value . '4']) ? ($core_values[$core_value . '4'] == 'ro' ? 'selected' : '') : '-' }}>RO</option>
+                                    <option value="no" {{ isset($core_values[$core_value . '4']) ? ($core_values[$core_value . '4'] == 'no' ? 'selected' : '') : '-' }}>NO</option>
+                                </select>
+                            @endguest
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Marking</th>
+                        <th scope="col">Non-numerical rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AO</td>
+                        <td>Always Observed</td>
+                    </tr>
+                    <tr>
+                        <td>SO</td>
+                        <td>Sometimes Observed</td>
+                    </tr>
+                    <tr>
+                        <td>RO</td>
+                        <td>Rarely Observed</td>
+                    </tr>
+                    <tr>
+                        <td>NO</td>
+                        <td>Not Observed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12">
+            <hr class="m-4">
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-bordered text-center bg-white">
+                <thead>
+                    <tr>
+                        <th></th>
+                        @foreach(config('constants.months') as $month)
+                            <th>{{ $month }}</th>
+                        @endforeach
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>No. of school days</td>
+                        @foreach(config('constants.months') as $month)
+                            @guest
+                                <td> {{ isset($attendances[$month . '-days']) ? $attendances[$month . '-days'] : '-' }} </td>
+                            @else
+                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'days'}}" value="{{ isset($attendances[$month . '-days']) ? $attendances[$month . '-days'] : '-' }}"></td>
+                            @endguest
+                        @endforeach
+                    </tr>
+                    <tr>
+                        <td>No. of days present</td>
+                        @foreach(config('constants.months') as $month)
+                            @guest
+                                <td> {{ isset($attendances[$month . '-present']) ? $attendances[$month . '-present'] : '-' }} </td>  
+                            @else
+                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'present'}}" value="{{ isset($attendances[$month . '-present']) ? $attendances[$month . '-present'] : '' }}"></td>
+                            @endguest
+                        @endforeach
+                    </tr>
+                    <tr>
+                        <td>No. of days absent</td>
+                        @foreach(config('constants.months') as $month)
+                            @guest
+                                <td> {{ isset($attendances[$month . '-absent']) ? $attendances[$month . '-absent'] : '-' }} </td>
+                            @else
+                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'absent'}}" value="{{ isset($attendances[$month . '-absent']) ? $attendances[$month . '-absent'] : '' }}"></td>
+                                
+                            @endguest
+                        @endforeach
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div class="col-md-12 mt-2">
             <hr>
@@ -94,7 +254,34 @@
             @endauth
         </div>
 
-        <hr>
+        <hr style="margin-bottom: 500px;">
+        <input type="hidden" id="student_id" value="{{ $student->id }}">
+        
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function(){
+        
+        
+    });
+
+    function updateCore(select)
+    {
+        var student_id = $('#student_id').val();
+        $.post("/api/core/update", {student_id: student_id, name: select.name, value: select.value}, function(data, status){
+            
+        });
+    }
+
+    function updateAttendance(input)
+    {
+        var student_id = $('#student_id').val();
+        $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
+            
+        });
+    }
+
+</script>
 @endsection

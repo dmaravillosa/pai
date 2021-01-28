@@ -48,53 +48,93 @@
             <hr>
         </div>
 
-        @foreach($students as $student)
-        <div class="col-md-12 border mt-3 p-3 rounded {{ $student->password ? 'bg-secondary text-white' : 'bg-white' }}">
-            <div class="row">
-                @auth
-                    @if(auth()->user()->id == 1 || auth()->user()->id == 2)
-                        <div class="col-md-10 mt-1">
-                            <span>
-                                (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
-                                @if($student->seen)
-                                    (<i class="fas fa-eye fa-sm"></i>)
-                                @endif
-                            </span>
-                            <h2>{{ $student->name }}</h2>
-                        </div>
-                        <div class="col-md-1 mt-3">
-                            <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
-                        </div>
-                        <div class="col-md-1 mt-3">
-                            <a href="/students/lock/{{ $student->id }}" class="btn btn-block btn-warning"><i class="fas fa-lock"></i></a>
-                        </div>
-                    @else
-                        <div class="col-md-11 mt-1">
-                            (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) <h2>{{ $student->name }}</h2>
-                        </div>
-                        <div class="col-md-1 mt-3">
-                            @if($student->password)
-                                <a href="/students/lock/{{ $student->id }}/1" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
+       
+        
+        <table class="table bg-white">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="7">Student</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($students as $student)
+                    <tr>
+                        @auth
+                            @if(auth()->user()->id == 1 || auth()->user()->id == 2)
+                                <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center">
+                                    <div class="m-2">
+                                        (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
+                                        @if($student->seen)
+                                            (<i class="fas fa-eye fa-sm"></i>)
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <a href="/grades/view/{{ $student->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="/students/lock/{{ $student->id }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
+                                </td>
                             @else
-                                <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-edit"></i></a>
+                                <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center">
+                                    <div class="m-2">
+                                        (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    @if($student->password)
+                                        <a href="/students/lock/{{ $student->id }}/1" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    @else
+                                        <a href="/grades/view/{{ $student->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    @endif
+                                </td>
                             @endif
-                        </div>
-                    @endif
-                @else
-                    <div class="col-md-11 mt-1">
-                        (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) <h2>{{ $student->name }}</h2>
-                    </div>
-                    <div class="col-md-1 mt-3">
-                        @if($student->password)
-                            <a href="/students/lock/{{ $student->id }}/1" class="btn btn-block btn-primary"><i class="fas fa-id-card-alt"></i></a>
                         @else
-                            <a href="/grades/view/{{ $student->id }}" class="btn btn-block btn-primary"><i class="fas fa-id-card-alt"></i></a>
-                        @endif
-                    </div>
-                @endauth
-        </div>
-        </div>
-        @endforeach
+                            <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <div class="m-2">
+                                    (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) 
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                @if($student->password)
+                                    <a href="/students/lock/{{ $student->id }}/1" class="btn btn-primary"><i class="fas fa-id-card-alt"></i></a>
+                                @else
+                                    <a href="/grades/view/{{ $student->id }}" class="btn btn-primary"><i class="fas fa-id-card-alt"></i></a>
+                                @endif
+                            </td>
+                        @endauth
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 </div>
 @endsection

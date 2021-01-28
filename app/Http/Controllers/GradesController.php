@@ -18,7 +18,7 @@ class GradesController extends Controller
      */
     public function view($id)
     {
-        $student = Student::with(['grades', 'classroom'])->where('id', $id)->first();
+        $student = Student::with(['grades', 'classroom', 'core_values', 'attendance'])->where('id', $id)->first();
         if(auth()->user() == null)
         {
             $student->seen = 1;
@@ -45,10 +45,25 @@ class GradesController extends Controller
             $grades[strtoupper($grade->subject)][$grade->quarter] = $grade->grade;
         }
 
+        $core_values = [];
+        foreach($student->core_values as $core_value)
+        {
+            $core_values[$core_value->core_value . $core_value->type . $core_value->quarter] = $core_value->score;
+        }
+
+        $attendances = [];
+        foreach($student->attendance as $attendance)
+        {
+            $attendances[$attendance->month . '-' . $attendance->type] = $attendance->score;
+        }
+
+
         return view('grades.view')
             ->with('teacher', $teacher)
             ->with('student', $student)
             ->with('grades', $grades)
+            ->with('core_values', $core_values)
+            ->with('attendances', $attendances)
             ->with('config', $config);
     }
 

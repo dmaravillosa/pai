@@ -40,7 +40,7 @@ class ClassroomController extends Controller
         $classroom->students()->delete();
         $classroom->delete();
 
-        return view('status')->with('message', 'Classroom successfully deleted.');
+        return view('status')->with('message', 'Class successfully deleted.');
     }
 
     public function import(Request $request)

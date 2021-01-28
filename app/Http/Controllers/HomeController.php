@@ -43,6 +43,53 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function announcement()
+    {
+        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
+        $events = Update::all();
+        $config = SchoolYearConfig::first();
+
+        // dd($users->toArray());
+        return view('announcement')
+            ->with('users', $users)
+            ->with('events', $events)
+            ->with('config', $config);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function classess()
+    {
+        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
+        $events = Update::all();
+        $config = SchoolYearConfig::first();
+
+        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        {
+            $classrooms = Classroom::with('students')->get();
+        }
+        else
+        {
+            $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
+        }
+
+        // dd($users->toArray());
+        return view('classess')
+            ->with('users', $users)
+            ->with('events', $events)
+            ->with('config', $config)
+            ->with('classrooms', $classrooms)
+            ->with('user_id', auth()->user()->id);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
         if(auth()->user()->id == 1 || auth()->user()->id == 2)
