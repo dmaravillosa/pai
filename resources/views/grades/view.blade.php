@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-1 mt-2">
@@ -193,9 +194,9 @@
                         <td>No. of school days</td>
                         @foreach(config('constants.months') as $month)
                             @guest
-                                <td> {{ isset($attendances[$month . '-days']) ? $attendances[$month . '-days'] : '-' }} </td>
+                                <td> {{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] : '-' }} </td>
                             @else
-                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'days'}}" value="{{ isset($attendances[$month . '-days']) ? $attendances[$month . '-days'] : '-' }}"></td>
+                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'days'}}" name="{{ $month . '_' . 'days'}}" value="{{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] : '-' }}"></td>
                             @endguest
                         @endforeach
                         <td>{{ isset($attendances['days_total']) ? $attendances['days_total'] : '-' }}</td>
@@ -204,9 +205,9 @@
                         <td>No. of days present</td>
                         @foreach(config('constants.months') as $month)
                             @guest
-                                <td> {{ isset($attendances[$month . '-present']) ? $attendances[$month . '-present'] : '-' }} </td>  
+                                <td> {{ isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : '-' }} </td>  
                             @else
-                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'present'}}" value="{{ isset($attendances[$month . '-present']) ? $attendances[$month . '-present'] : '' }}"></td>
+                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'present'}}" name="{{ $month . '_' . 'present'}}" value="{{ isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : '' }}"></td>
                             @endguest
                         @endforeach
                         <td>{{ isset($attendances['present_total']) ? $attendances['present_total'] : '-' }}</td>
@@ -215,9 +216,9 @@
                         <td>No. of days absent</td>
                         @foreach(config('constants.months') as $month)
                             @guest
-                                <td> {{ isset($attendances[$month . '-absent']) ? $attendances[$month . '-absent'] : '-' }} </td>
+                                <td> {{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '-' }} </td>
                             @else
-                                <td><input onchange="updateAttendance(this);" type="number" name="{{ $month . '-' . 'absent'}}" value="{{ isset($attendances[$month . '-absent']) ? $attendances[$month . '-absent'] : '' }}"></td>
+                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'absent'}}" name="{{ $month . '_' . 'absent'}}" value="{{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '' }}"></td>
                                 
                             @endguest
                         @endforeach
@@ -267,24 +268,59 @@
 <script>
 
     $(document).ready(function(){
-        
-        
+        // $('.toast').toast('show');
     });
 
     function updateCore(select)
     {
         var student_id = $('#student_id').val();
         $.post("/api/core/update", {student_id: student_id, name: select.name, value: select.value}, function(data, status){
-            
+            $('.toast').toast('show');
         });
     }
 
     function updateAttendance(input)
     {
         var student_id = $('#student_id').val();
-        $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
-            
-        });
+
+        var month = input.name.split('_');
+        
+        if(month[1] == 'days')
+        {
+            $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
+                $('.toast').toast('show');
+            });
+        }
+        else if(month[1] == 'present')
+        {
+            console.log(input.value , +$('#' + month[0] + '_days').val());
+            if(input.value > $('#' + month[0] + '_days').val())
+            {
+                alert('Days present exceed school days. ')
+                $('#' + input.name).val('');
+            }
+            else
+            {
+                $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
+                    $('.toast').toast('show');
+                });
+            }
+        }
+        else
+        {
+            if(input.value > +$('#' + month[0] + '_present').val())
+            {
+                alert('Days absent exceed days present. ')
+                $('#' + input.name).val('');
+            }
+            else
+            {
+                $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
+                    $('.toast').toast('show');
+                });
+            }
+        }
+       
     }
 
 </script>

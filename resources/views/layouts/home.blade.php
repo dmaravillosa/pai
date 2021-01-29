@@ -105,7 +105,7 @@
                             <form action="/students/list" method="GET">
                                 <div class="input-group">
                                     <span class="fas fa-user form-control-icon"></span>
-                                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Student Name">
+                                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="ex. Ramos, John C.">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary rounded ml-2"><i class="fas fa-search"></i></button>
                                     </div>

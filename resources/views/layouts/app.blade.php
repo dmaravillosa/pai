@@ -60,6 +60,7 @@
 </head>
 <body>
     <div id="app">
+    
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -119,6 +120,16 @@
                 </div>
             </div>
         </nav>
+
+
+        <div class="position-relative">
+            <div class="toast m-4 bg-success text-white" data-delay="2000" style="position: fixed; top: 0; right: 0;">
+                <div class="toast-body">
+                    Updated!
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+            </div>
+        </div>
 
         <main class="py-4">
             @yield('content')

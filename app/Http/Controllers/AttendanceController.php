@@ -69,7 +69,7 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, Attendance $attendance)
     {
-        $month_type = explode('-', $request->name);
+        $month_type = explode('_', $request->name);
 
         $attendance = Attendance::where('student_id', $request->student_id)
                         ->where('month', $month_type[0])

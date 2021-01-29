@@ -6,7 +6,7 @@
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-1 mt-2">
-                    <a href="/students/list" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    <a href="/" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-10 mt-2 text-center">
                     @guest 

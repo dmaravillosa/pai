@@ -65,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($students as $student)
+                @forelse($students as $student)
                     <tr>
                         @auth
                             @if(auth()->user()->id == 1 || auth()->user()->id == 2)
@@ -131,7 +131,9 @@
                             </td>
                         @endauth
                     </tr>
-                @endforeach
+                    @empty
+                        <td>No match records.</td>
+                    @endforelse
             </tbody>
         </table>
 

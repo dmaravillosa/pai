@@ -54,7 +54,7 @@ class GradesController extends Controller
         $attendances = [];
         foreach($student->attendance as $attendance)
         {
-            $attendances[$attendance->month . '-' . $attendance->type] = $attendance->score;
+            $attendances[$attendance->month . '_' . $attendance->type] = $attendance->score;
         }
 
         $attendances['days_total'] = $student->attendance->where('type', 'days')->sum('score');

@@ -28,12 +28,12 @@ class StudentController extends Controller
      */
     public function list(Request $request)
     {
-        $filters =  explode(' ', strtolower($request->filter));
-        $students = Student::where(function ($query) use($filters){
-                        foreach($filters as $filter){
-                            $query->orwhere('name', 'like',  '%' . $filter .'%');
-                        }
-                    })->get();
+        $students = Student::all();
+
+        $students = $students->filter(function ($item) use ($request) 
+        {
+             return strtolower(preg_replace("/[\W\d_]/i", '', $item->name)) == strtolower(preg_replace("/[\W\d_]/i", '', $request->filter));
+        });
 
         return view('student.view')
             ->with('students', $students);
