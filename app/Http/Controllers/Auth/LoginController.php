@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,10 @@ class LoginController extends Controller
 
     public function redirectTo() {
         $id = Auth::user()->id; 
+
+        $user = User::where('id', $id)->first();
+        $user->last_login = date('Y-m-d');
+        $user->save();
         
         if($id == 1 || $id == 2){
             return '/admin';

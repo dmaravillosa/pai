@@ -11,6 +11,7 @@ class SchoolYearConfig extends Model
 
     protected $fillable = [
         'quarter',
-        'school_year'
+        'school_year',
+        'is_active'
     ];
 }

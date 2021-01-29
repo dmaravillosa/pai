@@ -72,5 +72,7 @@ Route::prefix('updates')->group(function () {
 
 //SchoolYearConfig
 Route::prefix('syc')->group(function () {
+    Route::get('/create/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'create'])->name('syc.create');
+    Route::post('/store/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'store'])->name('syc.store');
     Route::post('/update/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'update'])->name('syc.update');
 });

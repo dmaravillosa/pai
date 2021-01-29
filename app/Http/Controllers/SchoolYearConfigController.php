@@ -24,9 +24,12 @@ class SchoolYearConfigController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $endpoint = '/syc/store/' . $id;
+        return view('confirm')
+            ->with('endpoint', $endpoint)
+            ->with('message', 'Are you sure you want to generate a new school year?');
     }
 
     /**
@@ -35,9 +38,20 @@ class SchoolYearConfigController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $syc = SchoolYearConfig::where('id', $id)->first();
+        $school_year = explode('-', $syc->school_year);
+        $syc->is_active = 0;
+        $syc->save();
+
+        $new_syc = SchoolYearConfig::create([
+            'school_year' => ($school_year[0] + 1) . '-' . ($school_year[1] + 1),
+            'quarter' => 1,
+            'is_active' => 1
+        ]);
+
+        return redirect()->route('admin');   
     }
 
     /**
@@ -71,7 +85,12 @@ class SchoolYearConfigController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $syc = SchoolYearConfig::where('id' , $id)->first();
+        $school_years = DB::table('school_year_configs')->update([
+            'is_active' => 0
+        ]);
+
+        $syc = SchoolYearConfig::where('id' , $request->school_year)->first();
+        $syc->is_active = 1;
         $syc->quarter = $request->quarter;
         $syc->save();
 
@@ -79,7 +98,7 @@ class SchoolYearConfigController extends Controller
             'seen' => 0
         ]);
 
-        return redirect()->route('admin');
+        return redirect()->route(isset($request->page) ? $request->page : 'admin');
     }
 
     /**

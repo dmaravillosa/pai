@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
 
+    <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-1 mt-2">
@@ -18,7 +19,7 @@
         </div>
 
         <div class="col-md-12 mt-2">
-            <table class="table table-bordered text-center bg-white">
+            <table class="table table-bordered text-center bg-white" id="section-to-print">
                 <thead>
                     <tr>
                         <th rowspan="2">Learning Areas</th>
@@ -66,7 +67,7 @@
         </div>
 
         <div class="col-md-8">
-            <table class="table table-bordered text-center bg-white">
+            <table class="table table-bordered text-center bg-white" id="section-to-print">
                 <thead>
                     <tr>
                         <th rowspan="2">Core Values</th>
@@ -146,7 +147,7 @@
         </div>
 
         <div class="col-md-4">
-            <table class="table table-borderless">
+            <table class="table table-borderless" id="section-to-print">
                 <thead>
                     <tr>
                         <th scope="col">Marking</th>
@@ -179,7 +180,7 @@
         </div>
 
         <div class="col-md-12">
-            <table class="table table-bordered text-center bg-white">
+            <table class="table table-bordered text-center bg-white" id="section-to-print">
                 <thead>
                     <tr>
                         <th></th>
@@ -321,6 +322,11 @@
             }
         }
        
+    }
+
+    function printThis()
+    {
+        window.print();
     }
 
 </script>

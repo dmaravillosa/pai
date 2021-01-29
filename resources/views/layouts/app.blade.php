@@ -56,6 +56,20 @@
             padding: 10px;
             box-sizing: border-box;
         }
+
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #section-to-print, #section-to-print * {
+                visibility: visible;
+            }
+            #section-to-print {
+                left: 0;
+                top: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -101,7 +115,6 @@
                                     @if(auth()->user()->id == 1 || auth()->user()->id == 2)
                                         <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Admin Panel')  }}</a>
                                         <a class="dropdown-item" href="{{ route('students.list') }}">{{ __('Student Passwords')  }}</a>
-                                        <a class="dropdown-item" href="{{ route('home') }}">{{ __('Classes')  }}</a>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -27,7 +27,7 @@ class GradesController extends Controller
         
         $teacher = User::where('id', $student->classroom()->first()->user_id)->first()->name;
 
-        $config = SchoolYearConfig::first();
+        $config = SchoolYearConfig::where('is_active', 1)->first();
 
         $grades = [];
         foreach(config('constants.subjects') as $subject)

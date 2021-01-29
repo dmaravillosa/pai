@@ -25,17 +25,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function admin()
+    public function admin(Request $request)
     {
-        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
-        $events = Update::all();
-        $config = SchoolYearConfig::first();
+        if($request->archived)
+        {
+            $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->onlyTrashed()->get();
+        }
+        else
+        {
+            $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
+        }
+        
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+        $school_years = SchoolYearConfig::all();
 
         // dd($users->toArray());
         return view('admin')
             ->with('users', $users)
-            ->with('events', $events)
-            ->with('config', $config);
+            ->with('config', $config)
+            ->with('school_years', $school_years)
+            ->with('archived', $request->archived);
     }
 
     /**
@@ -43,46 +52,69 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function announcement()
+    public function announcement(Request $request)
     {
-        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
-        $events = Update::all();
-        $config = SchoolYearConfig::first();
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+        $school_years = SchoolYearConfig::all();
 
-        // dd($users->toArray());
-        return view('announcement')
-            ->with('users', $users)
-            ->with('events', $events)
-            ->with('config', $config);
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function classess()
-    {
-        $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
-        $events = Update::all();
-        $config = SchoolYearConfig::first();
-
-        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        if($request->archived)
         {
-            $classrooms = Classroom::with('students')->get();
+            $events = Update::where('school_year', $config->school_year)->onlyTrashed()->get();
         }
         else
         {
-            $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
+            $events = Update::where('school_year', $config->school_year)->get();
+        }
+        
+
+        // dd($users->toArray());
+        return view('announcement')
+            ->with('events', $events)
+            ->with('config', $config)
+            ->with('school_years', $school_years)
+            ->with('archived', $request->archived);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function classess(Request $request)
+    {
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+        $school_years = SchoolYearConfig::all();
+
+        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        {
+            if($request->archived)
+            {
+                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->onlyTrashed()->get();
+            }
+            else
+            {
+                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->get();
+            }
+        }
+        else
+        {
+            if($request->archived)
+            {
+                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->onlyTrashed()->get();
+            }
+            else
+            {
+                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
+            }
         }
 
         // dd($users->toArray());
         return view('classess')
-            ->with('users', $users)
-            ->with('events', $events)
             ->with('config', $config)
             ->with('classrooms', $classrooms)
-            ->with('user_id', auth()->user()->id);
+            ->with('user_id', auth()->user()->id)
+            ->with('school_years', $school_years)
+            ->with('archived', $request->archived);
     }
 
     /**
@@ -125,6 +157,6 @@ class HomeController extends Controller
     {
         return view('confirm')
             ->with('endpoint', $request->endpoint)
-            ->with('message', 'Are you sure you want to delete this record?');
+            ->with('message', 'Are you sure you want to archive this record?');
     }
 }

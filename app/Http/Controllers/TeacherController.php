@@ -102,6 +102,6 @@ class TeacherController extends Controller
         $user = User::findOrfail($id);
         $user->delete();
 
-        return view('status')->with('message', 'Account Successfully Deleted!');
+        return view('status')->with('message', 'Account Successfully Archived!');
     }
 }

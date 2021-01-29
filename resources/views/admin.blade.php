@@ -12,7 +12,13 @@
                 <div class="col-md-6 mt-2 text-right">
                     <form action="/syc/update/{{ $config->id }}" method="POST">
                         @csrf
-                        S.Y. {{ $config->school_year }} (
+                        S.Y.
+                        <select name="school_year">
+                            @foreach($school_years as $school_year)
+                                <option value="{{ $school_year->id }}" {{ $config->school_year == $school_year->school_year ? 'selected' : '' }}>{{$school_year->school_year}}</option>
+                            @endforeach
+                        </select>
+                         (
                         <select name="quarter">
                             <option value="1" {{ $config->quarter == '1' ? 'selected' : '' }}>1st</option>
                             <option value="2" {{ $config->quarter == '2' ? 'selected' : '' }}>2nd</option>
@@ -20,7 +26,14 @@
                             <option value="4" {{ $config->quarter == '4' ? 'selected' : '' }}>4th</option>
                         </select>
                         Quarter)
+
+                        <input type="hidden" name="page" value="admin">
+
                         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-sync"></i></button>
+                        <a href="/syc/create/{{$config->id}}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                        <span class="border border-dark mr-1"></span>
+
+                        <a href="/admin?archived={{ !$archived }}" class="btn btn-sm {{ !$archived ? 'btn-secondary' : 'btn-primary' }}"><i class="fas fa-{{ !$archived ? 'archive' : 'sync-alt' }}"></i></a>
                     </form>
                 </div>
             </div>
@@ -31,7 +44,9 @@
         <div class="col-md-10">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin">Teachers</a>
+                    <a class="nav-link active" href="/admin">
+                        Teachers
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/announcement">Announcements</a>
@@ -58,6 +73,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th scope="col" class="text-center">Last Login</th>
                         <th scope="col" class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -85,6 +101,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td> {{ $user->last_login ? $user->last_login : '-' }} </td>
                             <td>
                                 <div class="row m-2">
                                     <div class="col-md-6 text-right">
@@ -95,7 +112,10 @@
                                         <form action="/confirm" method="GET">
                                             @csrf
                                             <input type="hidden" name="endpoint" value="/teachers/delete/{{ $user->id }}">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+                                            @if(!$archived)
+                                                <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
+                                            @endif
                                         </form>
                                     </div>
                                 </div>

@@ -67,7 +67,7 @@
                                 <form action="/confirm" method="GET">
                                     @csrf
                                     <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                    <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
                                 </form>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolYearConfig;
 use App\Models\Update;
 use Illuminate\Http\Request;
 
@@ -35,10 +36,13 @@ class UpdatesController extends Controller
      */
     public function store(Request $request)
     {
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+
         $update = new Update();
         $update->title = $request->title;
         $update->description = $request->description;
         $update->event_date = $request->event_date;
+        $update->school_year = $config->school_year;
         $update->save();
 
         return view('status')->with('message', 'Event Successfully Created');
@@ -97,6 +101,6 @@ class UpdatesController extends Controller
         $updates = Update::findOrfail($id);
         $updates->delete();
 
-        return view('status')->with('message', 'Event Successfully Deleted!');
+        return view('status')->with('message', 'Event Successfully Archived!');
     }
 }

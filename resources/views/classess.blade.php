@@ -12,7 +12,13 @@
                 <div class="col-md-6 mt-2 text-right">
                     <form action="/syc/update/{{ $config->id }}" method="POST">
                         @csrf
-                        S.Y. {{ $config->school_year }} (
+                        S.Y.
+                        <select name="school_year">
+                            @foreach($school_years as $school_year)
+                                <option value="{{ $school_year->id }}" {{ $config->school_year == $school_year->school_year ? 'selected' : '' }}>{{$school_year->school_year}}</option>
+                            @endforeach
+                        </select>
+                         (
                         <select name="quarter">
                             <option value="1" {{ $config->quarter == '1' ? 'selected' : '' }}>1st</option>
                             <option value="2" {{ $config->quarter == '2' ? 'selected' : '' }}>2nd</option>
@@ -20,7 +26,15 @@
                             <option value="4" {{ $config->quarter == '4' ? 'selected' : '' }}>4th</option>
                         </select>
                         Quarter)
+
+                        <input type="hidden" name="page" value="classess">
+
                         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-sync"></i></button>
+                        <a href="/syc/create/{{$config->id}}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+
+                        <span class="border border-dark mr-1"></span>
+
+                        <a href="/classess?archived={{ !$archived }}" class="btn btn-sm {{ !$archived ? 'btn-secondary' : 'btn-primary' }}"><i class="fas fa-{{ !$archived ? 'archive' : 'sync-alt' }}"></i></a>
                     </form>
                 </div>
             </div>
@@ -59,46 +73,55 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($classrooms as $classroom)
-                    <tr>
-                        <td>
-                            <div class="m-3">
-                                {{ $classroom->level }}
-                            </div>
-                        </td>
-                        <td colspan="7" class="text-left">
-                            <div class="m-3">
-                                {{ $classroom->name }}
-                            </div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="m-3">
-                                {{ count($classroom->students) }}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row m-2">
-                                <div class="col-md-6 text-right">
-                                    <a href="/students/view/{{ $classroom->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                </div>
+                    @if(!isset($classrooms[0]))
+                        </tbody></table>
+                        <div class="mt-4 text-center">
+                            <p>No saved classes.</p>
+                        </div>
+                    @else
+                        @foreach($classrooms as $classroom)
+                            <tr>
+                                <td>
+                                    <div class="m-3">
+                                        {{ $classroom->level }}
+                                    </div>
+                                </td>
+                                <td colspan="7" class="text-left">
+                                    <div class="m-3">
+                                        {{ $classroom->name }}
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="m-3">
+                                        {{ count($classroom->students) }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row m-2">
+                                        <div class="col-md-6 text-right">
+                                            <a href="/students/view/{{ $classroom->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                        </div>
 
-                                <div class="col-md-6 text-left">
-                                    <form action="/confirm" method="GET">
-                                        @csrf
-                                        <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
+                                        <div class="col-md-6 text-left">
+                                            <form action="/confirm" method="GET">
+                                                @csrf
+                                                <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
+                                                @if(!$archived)
+                                                    <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
+                                                @endif
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
