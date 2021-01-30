@@ -47,7 +47,7 @@
                                 @if($key == 'GRADE' && $config->quarter != 4) <!-- dont display final grade if quarter is not 4th -->
                                     <td>-</td>
                                 @else
-                                    <td>{{ $grade }}</td>
+                                    <td>{{ $grade == 60 ? '-' : $grade }}</td>
                                 @endif
                             @else
                                 <td>-</td>

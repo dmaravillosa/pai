@@ -72,7 +72,6 @@ class ClassroomController extends Controller
     {
         try
         {
-            
             $files = $request->file('excel');
             foreach($files as $file){
 
@@ -118,7 +117,7 @@ class ClassroomController extends Controller
                                 break;
                             }
                             
-                            if(preg_match('~[0-9]~', $collection[5][$x][1]) && preg_match('/(.*), (.*)/', $collection[5][$x][1]))
+                            if(preg_match('~[0-9]~', $collection[5][$x][1]) && preg_match('/(.*), (.*)/', $collection[5][$x][1]) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>;@\|\\\-=\-_+\-¬\`\]]/", $collection[5][$x][1]))
                             {
                                 return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
                             }

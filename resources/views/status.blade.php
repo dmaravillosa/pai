@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    {{ $message }}
+                    {{ isset($message) ? $message : 'File too large! Please use standard grade sheet.' }}
 
                 </div>
 
