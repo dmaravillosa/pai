@@ -116,9 +116,16 @@ class ClassroomController extends Controller
                             {
                                 break;
                             }
+
+                            if(preg_match('~[0-9]~', $collection[5][$x][1])){
+                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
+                            }
                             
-                            if(preg_match('~[0-9]~', $collection[5][$x][1]) && preg_match('/(.*), (.*)/', $collection[5][$x][1]) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>;@\|\\\-=\-_+\-¬\`\]]/", $collection[5][$x][1]))
-                            {
+                            if(preg_match('/[^a-zA-Z]+/', str_replace(' ', '', preg_replace('/[.,]/', '', $collection[5][$x][1])))){
+                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
+                            }
+                               
+                            if(!preg_match('/\w+([, ]+\w+){1,2}/', $collection[5][$x][1])){
                                 return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
                             }
 
