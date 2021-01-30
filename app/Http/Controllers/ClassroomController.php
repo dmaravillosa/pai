@@ -123,7 +123,7 @@ class ClassroomController extends Controller
                                 return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
                             }
 
-                            if(array_search($collection[5][8][22], config('constants.subjects')))
+                            if(!array_search(strtolower($collection[5][8][22]), array_map('strtolower', config('constants.subjects'))))
                             {
                                 return view('status')->with('message', 'Invalid subject, please change and reupload!');
                             }
