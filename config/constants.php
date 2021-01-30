@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'roles' => [
+        'Administrator',
+        'Principal',
+        'Teacher'
+    ],
 
     'subjects' => [
         0 => 'Mother Tongue',

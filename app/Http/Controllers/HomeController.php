@@ -29,11 +29,11 @@ class HomeController extends Controller
     {
         if($request->archived)
         {
-            $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->onlyTrashed()->get();
+            $users = User::orderBy('created_at', 'desc')->onlyTrashed()->get();
         }
         else
         {
-            $users = User::whereNotIn('id', ['1', '2'])->orderBy('created_at', 'desc')->get();
+            $users = User::orderBy('created_at', 'desc')->get();
         }
         
         $config = SchoolYearConfig::where('is_active', 1)->first();
@@ -85,7 +85,7 @@ class HomeController extends Controller
         $config = SchoolYearConfig::where('is_active', 1)->first();
         $school_years = SchoolYearConfig::all();
 
-        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
         {
             if($request->archived)
             {
@@ -124,7 +124,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->id == 1 || auth()->user()->id == 2)
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
         {
             $classrooms = Classroom::with('students')->get();
         }

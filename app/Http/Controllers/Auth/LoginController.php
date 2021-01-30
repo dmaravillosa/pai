@@ -41,13 +41,12 @@ class LoginController extends Controller
     }
 
     public function redirectTo() {
-        $id = Auth::user()->id; 
 
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', auth()->user()->id)->first();
         $user->last_login = date('Y-m-d');
         $user->save();
         
-        if($id == 1 || $id == 2){
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal'){
             return '/admin';
         }
 

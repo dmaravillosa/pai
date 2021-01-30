@@ -45,7 +45,7 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" href="/admin">
-                        Teachers
+                        Users
                     </a>
                 </li>
                 <li class="nav-item">
@@ -58,14 +58,14 @@
         </div>
 
         <div class="col-md-2 text-right">
-            <a class="btn btn-success" href="/register"><i class="fas fa-plus"></i> Create Teacher</a>
+            <a class="btn btn-success" href="/register"><i class="fas fa-plus"></i> Create User</a>
         </div>
         
         <div class="col-md-12 mt-3">
             <table class="table bg-white text-center">
                 <thead>
                     <tr>
-                        <th scope="col">Teacher</th>
+                        <th scope="col">User</th>
                         <th scope="col" colspan="7" class="text-left">Email</th>
                         <th></th>
                         <th></th>
@@ -73,6 +73,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th scope="col" class="text-center">Role</th>
                         <th scope="col" class="text-center">Last Login</th>
                         <th scope="col" class="text-center">Actions</th>
                     </tr>
@@ -80,7 +81,7 @@
                 <tbody>
                     @if(!isset($users[0]))
                         <div class="mt-4 text-center">
-                            <p>No saved teachers.</p>
+                            <p>No saved users.</p>
                         </div>
                     @else
                         @foreach($users as $user)
@@ -101,6 +102,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td> {{ $user->role }} </td>
                             <td> {{ $user->last_login ? $user->last_login : '-' }} </td>
                             <td>
                                 <div class="row m-2">

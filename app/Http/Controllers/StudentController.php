@@ -42,7 +42,7 @@ class StudentController extends Controller
     public function lock($id, $unlock = 0)
     {
         if(auth()->user() != null){
-            if((auth()->user()->id != 1 && auth()->user()->id != 2))
+            if((auth()->user()->role != 'Administrator' && auth()->user()->role != 'Principal'))
             {
                 return redirect('/grades/view/' . $id);
             }

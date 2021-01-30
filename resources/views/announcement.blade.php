@@ -45,7 +45,7 @@
         <div class="col-md-10">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin">Teachers</a>
+                    <a class="nav-link" href="/admin">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/announcement">Announcements</a>

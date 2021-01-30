@@ -6,14 +6,14 @@
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-3 mt-2">
-                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->id == 1 || auth()->user()->id == 2 ? '/admin' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' ? '/admin' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-6 mt-2 text-center">
                     <h4>Student List</h4>
                 </div>
                 
                 @auth
-                    @if(auth()->user()->id != 1 && auth()->user()->id != 2)
+                    @if(auth()->user()->role != 'Administrator' && auth()->user()->role != 'Principal')
                         <div class="col-md-3 mt-2 text-right">
                             <a class="btn btn-success" href="/classroom/view"><i class="fas fa-plus"></i> Update Grades</a>
                         </div>
@@ -68,7 +68,7 @@
                 @forelse($students as $student)
                     <tr>
                         @auth
-                            @if(auth()->user()->id == 1 || auth()->user()->id == 2)
+                            @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
                                 <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
                                 <td></td>
                                 <td></td>

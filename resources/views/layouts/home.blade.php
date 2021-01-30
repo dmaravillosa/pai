@@ -85,7 +85,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <u><a href="{{ auth()->user()->id == 1 || auth()->user()->id ==2 ? route('admin') : route('home') }}" a class="nav-link text-dark">Home</a></u>
+                                <u><a href="{{ auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' ? route('admin') : route('home') }}" a class="nav-link text-dark">Home</a></u>
                             </li>
                         @endguest
                     </ul>
