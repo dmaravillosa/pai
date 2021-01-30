@@ -18,6 +18,7 @@ class CreateSchoolYearConfigTable extends Migration
             $table->id();
             $table->string('school_year');
             $table->integer('quarter');
+            $table->boolean('is_active');
             $table->timestamps();
         });
 
