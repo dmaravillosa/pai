@@ -114,7 +114,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(auth()->user()->id == 1 || auth()->user()->id == 2)
                                         <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Admin Panel')  }}</a>
-                                        <a class="dropdown-item" href="/teachers/edit/2">{{ __('My  Account')  }}</a>
+                                        <a class="dropdown-item" href="/teachers/edit/2">{{ __('Change Principal Account')  }}</a>
                                         <a class="dropdown-item" href="{{ route('students.list') }}">{{ __('Student Passwords')  }}</a>
                                     @endif
 
