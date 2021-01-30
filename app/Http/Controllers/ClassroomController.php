@@ -117,6 +117,8 @@ class ClassroomController extends Controller
                                 break;
                             }
 
+                            $collection[5][$x][1] = str_replace('Ñ','N', $collection[5][$x][1]);
+
                             if(preg_match('~[0-9]~', $collection[5][$x][1])){
                                 return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
                             }
