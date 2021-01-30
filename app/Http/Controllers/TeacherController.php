@@ -104,4 +104,19 @@ class TeacherController extends Controller
 
         return view('status')->with('message', 'Account Successfully Archived!');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(User $user, $id)
+    {
+        $user = User::where('id', $id)->withTrashed()->first();
+        $user->deleted_at = null;
+        $user->save();
+
+        return view('status')->with('message', 'Account Successfully Restored!');
+    }
 }

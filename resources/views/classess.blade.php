@@ -110,9 +110,15 @@
 
                                         <div class="col-md-6 text-left">
                                             <form action="/confirm" method="GET">
+                                                <input type="hidden" name="archived" value="{{ $archived }}">
+
                                                 @csrf
-                                                <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
+                                                
                                                 @if(!$archived)
+                                                    <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
+                                                    <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
+                                                @else
+                                                    <input type="hidden" name="endpoint" value="/classroom/restore/{{ $classroom->id }}">
                                                     <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
                                                 @endif
                                             </form>

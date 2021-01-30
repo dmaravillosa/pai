@@ -109,9 +109,14 @@
                                     <div class="col-md-6 text-left">
                                         <form action="/confirm" method="GET">
                                             @csrf
-                                            <input type="hidden" name="endpoint" value="/updates/delete/{{ $event->id }}">
+                                            <input type="hidden" name="archived" value="{{ $archived }}">
+                                            
                                             @if(!$archived)
+                                                <input type="hidden" name="endpoint" value="/updates/delete/{{ $event->id }}">
                                                 <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
+                                            @else
+                                                <input type="hidden" name="endpoint" value="/updates/restore/{{ $event->id }}">
+                                                <button type="submit" class="btn btn-success"><i class="fas fa-sync-alt"></i></button>
                                             @endif
                                         </form>
                                     </div>

@@ -43,6 +43,31 @@ class ClassroomController extends Controller
         return view('status')->with('message', 'Class successfully archived.');
     }
 
+    public function restore($id)
+    {
+        $classroom = Classroom::where('id', $id)->withTrashed()->first();
+
+        $students = Student::where('classroom_id', $id)->withTrashed()->get();
+        foreach($students as $student)
+        {
+            $student->deleted_at = null;
+            $student->save();
+
+            foreach($student->grades()->withTrashed()->get() as $grade)
+            {
+                $grade->deleted_at = null;
+                $grade->save();
+            }
+        }
+
+        $classroom->students()->update(['deleted_at' => null]);
+
+        $classroom->deleted_at = null;
+        $classroom->save();
+
+        return view('status')->with('message', 'Class successfully restored.');
+    }
+
     public function import(Request $request)
     {
         try

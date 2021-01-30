@@ -87,7 +87,7 @@ class UpdatesController extends Controller
         $updates->event_date = $request->event_date;
         $updates->save();
 
-        return view('status')->with('message', 'Event Successfully Updated!');
+        return view('status')->with('message', 'Announcement Successfully Updated!');
     }
 
     /**
@@ -101,6 +101,21 @@ class UpdatesController extends Controller
         $updates = Update::findOrfail($id);
         $updates->delete();
 
-        return view('status')->with('message', 'Event Successfully Archived!');
+        return view('status')->with('message', 'Announcement Successfully Archived!');
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Update  $update
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(Update $update, $id)
+    {
+        $updates = Update::where('id', $id)->withTrashed()->first();
+        $updates->deleted_at = null;
+        $updates->save();
+
+        return view('status')->with('message', 'Announcement Successfully Restored!');
     }
 }

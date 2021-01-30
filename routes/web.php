@@ -37,6 +37,7 @@ Route::prefix('teachers')->group(function () {
     Route::get('/edit/{id}', [App\Http\Controllers\TeacherController::class, 'edit'])->name('teachers.edit');
     Route::post('/update/{id}', [App\Http\Controllers\TeacherController::class, 'update'])->name('teachers.update');
     Route::post('/delete/{id}', [App\Http\Controllers\TeacherController::class, 'destroy'])->name('teachers.destroy');
+    Route::post('/restore/{id}', [App\Http\Controllers\TeacherController::class, 'restore'])->name('teachers.restore');
 });
 
 // Classroom
@@ -44,6 +45,7 @@ Route::prefix('classroom')->group(function () {
     Route::get('/view', [App\Http\Controllers\ClassroomController::class, 'view'])->name('classroom.view');
     Route::post('/import', [App\Http\Controllers\ClassroomController::class, 'import'])->name('classroom.import');
     Route::post('/delete/{id}', [App\Http\Controllers\ClassroomController::class, 'delete'])->name('classroom.delete');
+    Route::post('/restore/{id}', [App\Http\Controllers\ClassroomController::class, 'restore'])->name('classroom.restore');
 });
 
 // Students
@@ -68,6 +70,7 @@ Route::prefix('updates')->group(function () {
     Route::get('/edit/{id}', [App\Http\Controllers\UpdatesController::class, 'edit'])->name('updates.edit');
     Route::post('/update/{id}', [App\Http\Controllers\UpdatesController::class, 'update'])->name('updates.update');
     Route::post('/delete/{id}', [App\Http\Controllers\UpdatesController::class, 'destroy'])->name('updates.destroy');
+    Route::post('/restore/{id}', [App\Http\Controllers\UpdatesController::class, 'restore'])->name('updates.restore');
 });
 
 //SchoolYearConfig

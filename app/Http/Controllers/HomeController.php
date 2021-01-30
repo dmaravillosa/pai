@@ -157,6 +157,6 @@ class HomeController extends Controller
     {
         return view('confirm')
             ->with('endpoint', $request->endpoint)
-            ->with('message', 'Are you sure you want to archive this record?');
+            ->with('message', 'Are you sure you want to ' . (!$request->archived ? 'archive' : 'restore') . ' this record?');
     }
 }
