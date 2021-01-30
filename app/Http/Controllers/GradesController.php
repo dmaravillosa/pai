@@ -41,7 +41,7 @@ class GradesController extends Controller
 
         foreach($student->grades as $grade)
         {
-            if(isset($grade->grade))
+            if(isset($grade->grade) && array_search(strtolower($grade->subject), array_map('strtolower', config('constants.subjects'))))
             $grades[strtoupper($grade->subject)][$grade->quarter] = $grade->grade;
         }
 
