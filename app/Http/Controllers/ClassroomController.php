@@ -118,12 +118,16 @@ class ClassroomController extends Controller
                                 break;
                             }
                             
-                            if(preg_match('~[0-9]~', $collection[5][$x][1]))
+                            if(preg_match('~[0-9]~', $collection[5][$x][1]) && preg_match('/(.*), (.*)/', $collection[5][$x][1]))
                             {
                                 return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
                             }
-                        
 
+                            if(array_search($collection[5][8][22], config('constants.subjects')))
+                            {
+                                return view('status')->with('message', 'Invalid subject, please change and reupload!');
+                            }
+                        
                             //create student if does not exist
                             $student = Student::firstOrCreate([
                                 'name' => $collection[5][$x][1],
