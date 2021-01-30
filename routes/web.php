@@ -31,6 +31,7 @@ Route::get('/confirm', [App\Http\Controllers\HomeController::class, 'confirm'])-
 Route::get('/', [App\Http\Controllers\PageController::class, 'events'])->name('events');
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
+Route::get('/terms', [App\Http\Controllers\PageController::class, 'terms'])->name('terms');
 
 // Teachers
 Route::prefix('teachers')->group(function () {

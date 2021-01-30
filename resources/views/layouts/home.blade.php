@@ -131,6 +131,19 @@
 
             <a target="_blank">
             <i class="far fa-envelope"></i> papayaacademy@yahoo.com</a>  
+
+            <br><br>
+            <small class="border-right border-dark pr-1">
+                <a>
+                    <i class="far fa-copyright"></i> Papaya Academy Inc.
+                </a> 
+            </small>
+
+            <small class="ml-2">
+                <a class="text-dark" href="/terms" target="_blank">
+                    Terms and Conditions
+                </a> 
+            </small>
         </div>
     </div>
 </body>

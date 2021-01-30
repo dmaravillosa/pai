@@ -34,7 +34,16 @@ class PageController extends Controller
      */
     public function contact()
     {
-        return view('contact
-        ');
+        return view('contact');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function terms()
+    {
+        return view('terms');
     }
 }
