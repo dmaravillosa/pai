@@ -16,7 +16,7 @@ class CreateAdminAccounts extends Migration
     {
         DB::table('users')->insert([
             'name' => 'Administrator',
-            'email' => 'danyel.maravillosa@gmail.com',
+            'email' => 'shielasoriano@gmail.com',
             'password' => '$2y$10$AXVvBVWXSIJkZDfsjHUnWeTGV5qzKNRelsn4Qchg5rhTUjVPtfgWm',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
