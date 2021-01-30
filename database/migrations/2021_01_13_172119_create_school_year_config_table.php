@@ -23,7 +23,8 @@ class CreateSchoolYearConfigTable extends Migration
 
         DB::table('school_year_configs')->insert([
             'school_year' => '2020-2021',
-            'quarter' => '1'
+            'quarter' => '1',
+            'is_active' => '1'
         ]);
     }
 
