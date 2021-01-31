@@ -29,6 +29,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th scope="col" class="text-center">Last Updated</th>
                     <th scope="col" class="text-center">Students</th>
                     <th scope="col" class="text-center">Actions</th>
                 </tr>
@@ -52,6 +53,11 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td>
+                        <div class="m-3">
+                            {{ $last_update ? date("F j, Y g:i:a", strtotime($last_update)) : '-' }}
+                        </div>
+                    </td>
                     <td>
                         <div class="m-3">
                             {{ count($classroom->students) }}

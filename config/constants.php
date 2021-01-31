@@ -8,16 +8,17 @@ return [
     ],
 
     'subjects' => [
-        0 => 'Mother Tongue',
-        1 => 'Filipino',
-        2 => 'English',
-        3 => 'Mathematics',
+        0 => 'Filipino',
+        1 => 'English', 
+        2 => 'Mathematics',
+        3 => 'Science',
         4 => 'Araling Panlipunan',
         5 => 'Edukasyon sa Pagpapakatao',
-        6 => 'Music',
-        7 => 'Arts',
-        8 => 'PE',
-        9 => 'Health'
+        6 => 'Mother Tongue',
+        7 => 'Music',
+        8 => 'Arts',
+        9 => 'PE',
+        10 => 'Health'
     ],
 
     'quarters' => [
@@ -34,6 +35,7 @@ return [
         'English' => 'Ms. Marie Sean A. Barbacena',
         'Mathematics' => 'Ms. Leizl R. Mercado',
         'Araling Panlipunan' => 'Ms. Aileen B. Villanueva',
+        'Science' => 'Ms. Katrina A. Ocampo',
         'Edukasyon Sa Pagpapakatao' => 'Ms. Geenie G. Ramos',
         'Music' => 'Sir Jerico T. Santos',
         'Arts' => 'Sir Jerico T. Santos',

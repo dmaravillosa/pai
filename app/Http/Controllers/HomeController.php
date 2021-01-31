@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classroom;
 use App\Models\SchoolYearConfig;
 use App\Models\Update;
+use App\Models\Grade;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -133,8 +134,20 @@ class HomeController extends Controller
             $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
         }
 
+        $last_update = '';
+        if($classrooms->first()){
+            if($classrooms->first()->students()->first()){
+                $last_update = Grade::whereIn('student_id', $classrooms->first()->students()->pluck('id'))->orderBy('updated_at', 'desc')->first()->updated_at;
+            }
+            else
+            {
+                $last_update = $classrooms->first()->updated_at;
+            }
+        }
+            
         return view('home')
             ->with('classrooms', $classrooms)
+            ->with('last_update', $last_update ? $last_update : null)
             ->with('user_id', auth()->user()->id);
     }
 
