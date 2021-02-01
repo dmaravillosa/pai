@@ -285,7 +285,7 @@
     {
         var student_id = $('#student_id').val();
         $.post("/api/core/update", {student_id: student_id, name: select.name, value: select.value}, function(data, status){
-            $('.toast').toast('show');
+            $('#toast_success').toast('show');
         });
     }
 
@@ -298,7 +298,7 @@
         if(month[1] == 'days')
         {
             $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
-                $('.toast').toast('show');
+                $('#toast_success').toast('show');
             });
         }
         else if(month[1] == 'present')
@@ -306,13 +306,14 @@
             console.log(input.value , +$('#' + month[0] + '_days').val());
             if(input.value > $('#' + month[0] + '_days').val())
             {
-                alert('Days present exceed school days. ')
+                $('#toast_message').text('Days present exceed school days. ');
+                $('#toast_error').toast('show');
                 $('#' + input.name).val('');
             }
             else
             {
                 $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
-                    $('.toast').toast('show');
+                    $('#toast_success').toast('show');
                 });
             }
         }
@@ -320,13 +321,14 @@
         {
             if(input.value > +$('#' + month[0] + '_present').val())
             {
-                alert('Days absent exceed days present. ')
+                $('#toast_message').text('Days absent exceed days present. ');
+                $('#toast_error').toast('show');
                 $('#' + input.name).val('');
             }
             else
             {
                 $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
-                    $('.toast').toast('show');
+                    $('#toast_success').toast('show');
                 });
             }
         }

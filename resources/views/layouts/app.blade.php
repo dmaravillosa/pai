@@ -136,10 +136,16 @@
 
 
         <div class="position-relative">
-            <div class="toast m-4 bg-success text-white" data-delay="2000" style="position: fixed; top: 0; right: 0;">
+            <div class="toast m-4 bg-success text-white" id="toast_success" data-delay="2000" style="position: fixed; top: 0; right: 0;">
                 <div class="toast-body">
                     Updated!
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+            </div>
+
+            <div class="toast m-4 bg-danger text-white" id="toast_error" data-delay="2000" style="position: fixed; top: 0; right: 0;">
+                <div class="toast-body">
+                    <p id="toast_message"></p>
                 </div>
             </div>
         </div>
