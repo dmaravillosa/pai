@@ -65,17 +65,17 @@
                     </td>
                     <td>
                         <div class="row m-2">
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-12 text-center">
                                 <a href="/students/view/{{ $classroom->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                             </div>
 
-                            <div class="col-md-6 text-left">
+                            <!-- <div class="col-md-6 text-left">
                                 <form action="/confirm" method="GET">
                                     @csrf
                                     <input type="hidden" name="endpoint" value="/classroom/delete/{{ $classroom->id }}">
                                     <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                     </td>
                 </tr>
