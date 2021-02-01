@@ -200,7 +200,9 @@
                             @guest
                                 <td> {{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] : '-' }} </td>
                             @else
-                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'days'}}" name="{{ $month . '_' . 'days'}}" value="{{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] : '-' }}"></td>
+                                <td>
+                                    <input onchange="updateAttendance(this);" type="text" id="{{ $month . '_' . 'days'}}" name="{{ $month . '_' . 'days'}}" value="{{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] : '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                </td>
                             @endguest
                         @endforeach
                         <td>{{ isset($attendances['days_total']) ? $attendances['days_total'] : '-' }}</td>
@@ -211,7 +213,9 @@
                             @guest
                                 <td> {{ isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : '-' }} </td>  
                             @else
-                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'present'}}" name="{{ $month . '_' . 'present'}}" value="{{ isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : '' }}"></td>
+                                <td>
+                                    <input onchange="updateAttendance(this);" type="text" id="{{ $month . '_' . 'present'}}" name="{{ $month . '_' . 'present'}}" value="{{ isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" />    
+                                </td>
                             @endguest
                         @endforeach
                         <td>{{ isset($attendances['present_total']) ? $attendances['present_total'] : '-' }}</td>
@@ -222,7 +226,9 @@
                             @guest
                                 <td> {{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '-' }} </td>
                             @else
-                                <td><input onchange="updateAttendance(this);" oninput="validity.valid||(value='');" min="0" type="number" id="{{ $month . '_' . 'absent'}}" name="{{ $month . '_' . 'absent'}}" value="{{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '' }}"></td>
+                                <td>
+                                    <input onchange="updateAttendance(this);" type="text" id="{{ $month . '_' . 'absent'}}" name="{{ $month . '_' . 'absent'}}" value="{{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                </td>
                                 
                             @endguest
                         @endforeach
@@ -247,7 +253,7 @@
                         </div>
                     </div>
             
-                    <textarea class="form-control" name="remarks">{{ $student->remarks }}</textarea>
+                    <textarea class="form-control" name="remarks" maxlength="255">{{ $student->remarks }}</textarea>
                 </form>
             @else
                 <div class="row">
@@ -256,7 +262,7 @@
                     </div>
 
                     <div class="col-md-12 mt-2 bg-white">
-                        <h5 class="mt-2">{{ $student->remarks ? $student->remarks : 'No teacher remarks.' }}</h5>
+                        <h5 class="mt-2 text-break">{{ $student->remarks ? $student->remarks : 'No teacher remarks.' }}</h5>
                     </div>
                 </div>
 
