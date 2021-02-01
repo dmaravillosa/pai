@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\ClassroomImport;
 use App\Models\Classroom;
 use App\Models\Grade;
+use App\Models\SchoolYearConfig;
 use App\Models\Student;
 use Exception;
 use Illuminate\Http\Request;
@@ -73,6 +74,7 @@ class ClassroomController extends Controller
         try
         {
             $files = $request->file('excel');
+            $config = SchoolYearConfig::where('is_active', 1)->first();
             foreach($files as $file){
 
                 if($file->getMimeType() != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -97,7 +99,7 @@ class ClassroomController extends Controller
                 $classroom = Classroom::firstOrCreate([
                     'level' => $grade_section[0],
                     'name' => $grade_section[1],
-                    'school_year' => $collection[5][7]["22"],
+                    'school_year' => $config->school_year,
                     'user_id' => auth()->user()->id
                 ]);
 
@@ -119,6 +121,7 @@ class ClassroomController extends Controller
 
                             // replace Nye with N
                             $collection[5][$x][1] = str_replace('Ñ','N', $collection[5][$x][1]);
+                            $collection[5][$x][1] = str_replace('ñ','n', $collection[5][$x][1]);
 
                             //if name has number
                             if(preg_match('~[0-9]~', $collection[5][$x][1])){
@@ -152,12 +155,12 @@ class ClassroomController extends Controller
                                 'student_id' => $student->id,
                                 'quarter' => $collection[5][10][5],
                                 'subject' => $collection[5][8][22],
-                                'school_year' => $collection[5][7][22]
+                                'school_year' => $config->school_year
                             ]);
                             $first_quarter->student_id = $student->id;
                             $first_quarter->quarter = $collection[5][10][5];
                             $first_quarter->subject = $collection[5][8][22];
-                            $first_quarter->school_year = $collection[5][7][22];
+                            $first_quarter->school_year = $config->school_year;
                             $first_quarter->grade = $collection[5][$x][5] ? $collection[5][$x][5] : 60;
                             $first_quarter->save();    
 
@@ -166,12 +169,12 @@ class ClassroomController extends Controller
                                 'student_id' => $student->id,
                                 'quarter' => $collection[5][10][9],
                                 'subject' => $collection[5][8][22],
-                                'school_year' => $collection[5][7][22]
+                                'school_year' => $config->school_year
                             ]);
                             $second_quarter->student_id = $student->id;
                             $second_quarter->quarter = $collection[5][10][9];
                             $second_quarter->subject = $collection[5][8][22];
-                            $second_quarter->school_year = $collection[5][7][22];
+                            $second_quarter->school_year = $config->school_year;
                             $second_quarter->grade = $collection[5][$x][9] ? $collection[5][$x][9] : 60;
                             $second_quarter->save();   
 
@@ -180,12 +183,12 @@ class ClassroomController extends Controller
                                 'student_id' => $student->id,
                                 'quarter' => $collection[5][10][13],
                                 'subject' => $collection[5][8][22],
-                                'school_year' => $collection[5][7][22]
+                                'school_year' => $config->school_year
                             ]);
                             $third_quarter->student_id = $student->id;
                             $third_quarter->quarter = $collection[5][10][13];
                             $third_quarter->subject = $collection[5][8][22];
-                            $third_quarter->school_year = $collection[5][7][22];
+                            $third_quarter->school_year = $config->school_year;
                             $third_quarter->grade = $collection[5][$x][13] ? $collection[5][$x][13] : 60;
                             $third_quarter->save();   
 
@@ -195,12 +198,12 @@ class ClassroomController extends Controller
                                 'student_id' => $student->id,
                                 'quarter' => $collection[5][10][17],
                                 'subject' => $collection[5][8][22],
-                                'school_year' => $collection[5][7][22]
+                                'school_year' => $config->school_year
                             ]);
                             $fourth_quarter->student_id = $student->id;
                             $fourth_quarter->quarter = $collection[5][10][17];
                             $fourth_quarter->subject = $collection[5][8][22];
-                            $fourth_quarter->school_year = $collection[5][7][22];
+                            $fourth_quarter->school_year = $config->school_year;
                             $fourth_quarter->grade = $collection[5][$x][17] ? $collection[5][$x][17] : 60;
                             $fourth_quarter->save();  
                             
@@ -209,12 +212,12 @@ class ClassroomController extends Controller
                                 'student_id' => $student->id,
                                 'quarter' => $collection[5][10][21],
                                 'subject' => $collection[5][8][22],
-                                'school_year' => $collection[5][7][22]
+                                'school_year' => $config->school_year
                             ]);
                             $final_grade->student_id = $student->id;
                             $final_grade->quarter = $collection[5][10][21];
                             $final_grade->subject = $collection[5][8][22];
-                            $final_grade->school_year = $collection[5][7][22];
+                            $final_grade->school_year = $config->school_year;
                             $final_grade->grade = $collection[5][$x][21] ?  $collection[5][$x][21] : 60;
                             $final_grade->save();  
                         }

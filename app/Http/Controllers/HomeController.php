@@ -125,29 +125,33 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $config = SchoolYearConfig::where('is_active', 1)->first();
         if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
         {
-            $classrooms = Classroom::with('students')->get();
+            $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->get();
         }
         else
         {
-            $classrooms = Classroom::with('students')->where('user_id', auth()->user()->id)->get();
+            $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
         }
 
         $last_update = '';
-        if($classrooms->first()){
-            if($classrooms->first()->students()->first()){
-                $last_update = Grade::whereIn('student_id', $classrooms->first()->students()->pluck('id'))->orderBy('updated_at', 'desc')->first()->updated_at;
-            }
-            else
-            {
-                $last_update = $classrooms->first()->updated_at;
+        foreach($classrooms as $classroom)
+        {
+            if($classroom){
+                if($classroom->students()->first()){
+                    $classroom->last_update = Grade::whereIn('student_id', $classroom->students()->pluck('id'))->orderBy('updated_at', 'desc')->first()->updated_at;
+                }
+                else
+                {
+                    $classroom->last_update = $classroom->updated_at;
+                }
             }
         }
+        
             
         return view('home')
             ->with('classrooms', $classrooms)
-            ->with('last_update', $last_update ? $last_update : null)
             ->with('user_id', auth()->user()->id);
     }
 

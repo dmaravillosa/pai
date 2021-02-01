@@ -55,7 +55,7 @@
                     <td></td>
                     <td>
                         <div class="m-3">
-                            {{ $last_update ? date("F j, Y g:i:a", strtotime($last_update)) : '-' }}
+                            {{ $classroom->last_update ? date("F j, Y g:i:a", strtotime($classroom->last_update)) : '-' }}
                         </div>
                     </td>
                     <td>
