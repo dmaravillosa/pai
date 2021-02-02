@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolYearConfig;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,8 +29,16 @@ class StudentController extends Controller
      */
     public function list(Request $request)
     {
-        $students = Student::all();
-
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+        $students = Student::with('classroom')->get();
+        foreach($students as $key => $student)
+        {
+            if($student->classroom->school_year != $config->school_year)
+            {
+                $students->forget($key);
+            }
+        }
+        
         $students = $students->filter(function ($item) use ($request) 
         {
              return strtolower(preg_replace("/[\W\d_]/i", '', $item->name)) == strtolower(preg_replace("/[\W\d_]/i", '', $request->filter));

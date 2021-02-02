@@ -8,7 +8,11 @@
         <div class="col-md-12 mt-2" id="section-to-print">
             <div class="row">
                 <div class="col-md-1 mt-2" id="exclude-to-print">
-                    <a href="/students/view/{{ $student->classroom_id }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    @guest
+                        <a href="/" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    @else
+                        <a href="/students/view/{{ $student->classroom_id }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    @endguest
                 </div>
                 <div class="col-md-10 mt-2 text-center">
                     <h4>{{ $student->name }}</h4> <small>(Adviser: {{ $teacher }})</small>
@@ -249,8 +253,8 @@
             </table>
         </div>
 
-        <div class="col-md-12 mt-2">
-            <hr>
+        <div class="col-md-12 mt-2" id="section-to-print">
+            <hr id="exclude-to-print">
             @auth
                 <form action="/students/remark/{{ $student->id }}" method="POST">
                     @csrf
@@ -259,7 +263,7 @@
                             <h4>Remarks</h4>
                         </div>
                         
-                        <div class="col-md-2 text-right">
+                        <div class="col-md-2 text-right" id="exclude-to-print">
                             <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
                         </div>
                     </div>
