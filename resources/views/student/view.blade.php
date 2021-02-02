@@ -6,7 +6,7 @@
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-3 mt-2">
-                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' ? '/admin' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' ? '/classess' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-6 mt-2 text-center">
                     <h4>Student List</h4>
