@@ -79,20 +79,20 @@ class ClassroomController extends Controller
 
                 if($file->getMimeType() != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
                 {
-                    return view('status')->with('message', 'Wrong grade sheet please check your excel.'); 
+                    return view('status')->with('message', 'Wrong grade sheet please check your excel.  File: (' . $file->getClientOriginalName() . ')'); 
                 }
                 
                 $collection = Excel::toArray(new ClassroomImport,  $file);
 
                 if($collection[5][0][0] != 'Summary of Quarterly Grades'){
-                    return view('status')->with('message', 'Wrong grade sheet please check your excel.');
+                    return view('status')->with('message', 'Wrong grade sheet please check your excel. File: (' . $file->getClientOriginalName() . ')');
                 }
 
                 $grade_section = explode("-", str_replace(' ', '', $collection[5][7]["10"]));
 
                 if(!isset($grade_section[1]))
                 {
-                    return view('status')->with('message', 'Please check your section data.'); 
+                    return view('status')->with('message', 'Please check your section data. File: (' . $file->getClientOriginalName() . ')'); 
                 }
 
                 //create classroom
@@ -125,23 +125,23 @@ class ClassroomController extends Controller
 
                             //if name has number
                             if(preg_match('~[0-9]~', $collection[5][$x][1])){
-                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
+                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload! File: (' . $file->getClientOriginalName() . ')');
                             }
                             
                             // if name has special character
                             if(preg_match('/[^a-zA-Z]+/', str_replace(' ', '', preg_replace('/[.,]/', '', $collection[5][$x][1])))){
-                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
+                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload! File: (' . $file->getClientOriginalName() . ')');
                             }
                                
                             // if name is not in format (xxxx, xxx x.)(xxxx, xxx)(xxxx, xxx xxx)(xxxx, xxx x) 
                             if(!preg_match('/\w+([, ]+\w+){1,2}/', $collection[5][$x][1])){
-                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload!');
+                                return view('status')->with('message', 'There is an invalid name in your grade sheet, please change and reupload! File: (' . $file->getClientOriginalName() . ')');
                             }
 
                             // if subject not valid
                             if(array_search(strtolower($collection[5][8][22]), array_map('strtolower', config('constants.subjects'))) === false) 
                             {
-                                return view('status')->with('message', 'Invalid subject, please change and reupload!');
+                                return view('status')->with('message', 'Invalid subject, please change and reupload! File: (' . $file->getClientOriginalName() . ')');
                             }
                         
                             //create student if does not exist
