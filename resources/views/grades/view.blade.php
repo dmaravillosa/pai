@@ -5,15 +5,15 @@
     <div class="row justify-content-center">
 
         
-        <div class="col-md-12 mt-2">
+        <div class="col-md-12 mt-2" id="section-to-print">
             <div class="row">
-                <div class="col-md-1 mt-2">
+                <div class="col-md-1 mt-2" id="exclude-to-print">
                     <a href="/students/view/{{ $student->classroom_id }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-10 mt-2 text-center">
                     <h4>{{ $student->name }}</h4> <small>(Adviser: {{ $teacher }})</small>
                 </div>
-                <div class="col-md-1 mt-2">
+                <div class="col-md-1 mt-2" id="exclude-to-print">
                     <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
                 </div>
             </div>

@@ -68,6 +68,14 @@
             #section-to-print {
                 left: 0;
                 top: 0;
+                page-break-after: always;
+            }
+            #exclude-to-print, #exclude-to-print * {
+                visibility: hidden;
+            }
+            #exclude-to-print {
+                left: 0;
+                top: 0;
             }
         }
     </style>
