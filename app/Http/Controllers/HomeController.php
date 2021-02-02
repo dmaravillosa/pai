@@ -166,6 +166,7 @@ class HomeController extends Controller
             
         return view('home')
             ->with('classrooms', $classrooms)
+            ->with('school_year', $config->school_year)
             ->with('user_id', auth()->user()->id);
     }
 
