@@ -109,6 +109,20 @@ class HomeController extends Controller
             }
         }
 
+        $last_update = '';
+        foreach($classrooms as $classroom)
+        {
+            if($classroom){
+                if($classroom->students()->first()){
+                    $classroom->last_update = Grade::whereIn('student_id', $classroom->students()->pluck('id'))->orderBy('updated_at', 'desc')->first()->updated_at;
+                }
+                else
+                {
+                    $classroom->last_update = $classroom->updated_at;
+                }
+            }
+        }
+
         // dd($users->toArray());
         return view('classess')
             ->with('config', $config)
