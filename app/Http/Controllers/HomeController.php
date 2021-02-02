@@ -90,26 +90,25 @@ class HomeController extends Controller
         {
             if($request->archived)
             {
-                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->onlyTrashed()->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->onlyTrashed()->get();
             }
             else
             {
-                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->get();
             }
         }
         else
         {
             if($request->archived)
             {
-                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->onlyTrashed()->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->onlyTrashed()->get();
             }
             else
             {
-                $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
             }
         }
 
-        $last_update = '';
         foreach($classrooms as $classroom)
         {
             if($classroom){
@@ -149,7 +148,6 @@ class HomeController extends Controller
             $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
         }
 
-        $last_update = '';
         foreach($classrooms as $classroom)
         {
             if($classroom){

@@ -61,11 +61,8 @@
                 <thead>
                     <tr>
                         <th scope="col">Grade</th>
-                        <th scope="col" colspan="7" class="text-left">Section</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th scope="col" class="text-left">Section</th>
+                        <th scope="col" colspan="3" class="text-center">Teacher</th>
                         <th></th>
                         <th></th>
                         <th scope="col" class="text-center">Last Updated</th>
@@ -87,15 +84,16 @@
                                         {{ $classroom->level }}
                                     </div>
                                 </td>
-                                <td colspan="7" class="text-left">
-                                    <div class="m-3">
+                                <td class="text-left">
+                                    <div class="mt-3">
                                         {{ $classroom->name }}
                                     </div>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td colspan="3" class="text-center">
+                                    <div class="m-3">
+                                        {{ $classroom->user->name }}
+                                    </div>
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td>
