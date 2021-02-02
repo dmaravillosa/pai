@@ -39,11 +39,17 @@ class GradesController extends Controller
             }
         }        
 
+        $gen_ave = 0;
         foreach($student->grades as $grade)
         {
-            if(isset($grade->grade) && array_search(strtolower($grade->subject), array_map('strtolower', config('constants.subjects'))))
+            if(isset($grade->grade) && array_search(strtolower($grade->subject), array_map('strtolower', config('constants.subjects'))) !== false) 
             $grades[strtoupper($grade->subject)][$grade->quarter] = $grade->grade;
+            
+            if($grade->quarter == 'GRADE'){
+                $gen_ave += $grade->grade;
+            }
         }
+        $gen_ave = $gen_ave / 12;
 
         $core_values = [];
         foreach($student->core_values as $core_value)
@@ -60,11 +66,11 @@ class GradesController extends Controller
         $attendances['days_total'] = $student->attendance->where('type', 'days')->sum('score');
         $attendances['present_total'] = $student->attendance->where('type', 'present')->sum('score');
         $attendances['absent_total'] = $student->attendance->where('type', 'absent')->sum('score');
-
-
+        
         return view('grades.view')
             ->with('teacher', $teacher)
             ->with('student', $student)
+            ->with('gen_ave', $gen_ave)
             ->with('grades', $grades)
             ->with('core_values', $core_values)
             ->with('attendances', $attendances)

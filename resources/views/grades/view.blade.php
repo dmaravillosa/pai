@@ -63,6 +63,17 @@
                         @endif
                     </tr>
                     @endforeach
+                    @if($config->quarter == 4)
+                    <tr>
+                        <td>General Average</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ round($gen_ave, 2) <= 60 ? 60 : round($gen_ave, 2) }}</td>
+                        <td class="{{ $gen_ave >= 75 ? 'text-success' : 'text-danger' }}"><b>{{ $gen_ave >= 75 ? 'PASSED' : 'FAILED' }}</b></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 
