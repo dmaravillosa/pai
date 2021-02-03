@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolYearConfig;
 use App\Models\Update;
 
 class PageController extends Controller
@@ -13,7 +14,9 @@ class PageController extends Controller
      */
     public function events()
     {
-        $events = Update::all();
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+
+        $events = Update::where('school_year', $config->school_year)->get();
         return view('welcome')->with('events', $events);
     }
 
