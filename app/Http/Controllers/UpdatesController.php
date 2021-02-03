@@ -81,10 +81,13 @@ class UpdatesController extends Controller
      */
     public function update(Request $request, Update $update, $id)
     {
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+
         $updates = Update::findOrFail($id);
         $updates->title = $request->title;
         $updates->description = $request->description;
         $updates->event_date = $request->event_date;
+        $updates->school_year = $config->school_year;
         $updates->save();
 
         return view('status')->with('message', 'Announcement Successfully Updated!');

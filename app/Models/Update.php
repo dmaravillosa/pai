@@ -19,5 +19,6 @@ class Update extends Model
         'title',
         'description',
         'event_date',
+        'school_year'
     ];
 }
