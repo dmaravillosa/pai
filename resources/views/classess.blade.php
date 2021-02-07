@@ -108,11 +108,11 @@
                                 </td>
                                 <td>
                                     <div class="row m-2">
-                                        <div class="col-md-6 text-right">
+                                        <div class="col-md-4 text-right">
                                             <a href="/students/view/{{ $classroom->id }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                         </div>
 
-                                        <div class="col-md-6 text-left">
+                                        <div class="col-md-4">
                                             <form action="/confirm" method="GET">
                                                 <input type="hidden" name="archived" value="{{ $archived }}">
 
@@ -125,6 +125,17 @@
                                                     <input type="hidden" name="endpoint" value="/classroom/restore/{{ $classroom->id }}">
                                                     <button type="submit" class="btn btn-warning"><i class="fas fa-archive"></i></button>
                                                 @endif
+                                            </form>
+                                        </div>
+
+                                        <div class="col-md-4 text-left">
+                                        
+                                            <form action="/confirm" method="GET">
+
+                                                <input type="hidden" name="approved" value="{{ $classroom->approved }}">
+                                                <input type="hidden" name="endpoint" value="/classroom/approve/{{ $classroom->id }}?approved={{ !$classroom->approved }}">
+
+                                                <button type="submit" class="btn btn-{{ !$classroom->approved ? 'success' : 'danger' }}"><i class="fas fa-{{ !$classroom->approved ? 'check' : 'ban' }}"></i></button>
                                             </form>
                                         </div>
                                     </div>

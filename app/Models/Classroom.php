@@ -20,6 +20,7 @@ class Classroom extends Model
         'name',
         'school_year',
         'user_id', //teacher
+        'approved'
     ];
 
     public function students()

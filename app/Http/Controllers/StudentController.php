@@ -33,7 +33,7 @@ class StudentController extends Controller
         $students = Student::with('classroom')->get();
         foreach($students as $key => $student)
         {
-            if($student->classroom->school_year != $config->school_year)
+            if($student->classroom->school_year != $config->school_year || !$student->classroom->approved)
             {
                 $students->forget($key);
             }

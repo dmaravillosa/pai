@@ -22,13 +22,13 @@
             <thead>
                 <tr>
                     <th scope="col">Grade</th>
-                    <th scope="col" colspan="7" class="text-left">Section</th>
+                    <th scope="col" colspan="6" class="text-left">Section</th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>
+                    <th scope="col" class="text-center">Status</th>
                     <th scope="col" class="text-center">Last Updated</th>
                     <th scope="col" class="text-center">Students</th>
                     <th scope="col" class="text-center">Actions</th>
@@ -42,7 +42,7 @@
                             {{ $classroom->level }}
                         </div>
                     </td>
-                    <td colspan="7" class="text-left">
+                    <td colspan="6" class="text-left">
                         <div class="m-3">
                             {{ $classroom->name }}
                         </div>
@@ -52,7 +52,11 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                        <div class="m-3">
+                            {{ $classroom->approved ? 'Approved' : 'Pending' }}
+                        </div>
+                    </td>
                     <td>
                         <div class="m-3">
                             {{ $classroom->last_update ? date("F j, Y g:i:a", strtotime($classroom->last_update)) : '-' }}
@@ -84,4 +88,5 @@
         </table>
     </div>
 </div>
+
 @endsection

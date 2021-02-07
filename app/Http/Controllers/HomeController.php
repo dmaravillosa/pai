@@ -185,6 +185,13 @@ class HomeController extends Controller
      */
     public function confirm(Request $request)
     {
+        if(isset($request->approved))
+        {
+            return view('confirm')
+                ->with('endpoint', $request->endpoint)
+                ->with('message', 'Are you sure you want to ' . (!$request->approved ? 'approve' : 'disable') . ' this classroom?');
+        }
+        
         return view('confirm')
             ->with('endpoint', $request->endpoint)
             ->with('message', 'Are you sure you want to ' . (!$request->archived ? 'archive' : 'restore') . ' this record?');

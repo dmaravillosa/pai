@@ -47,6 +47,7 @@ Route::prefix('classroom')->group(function () {
     Route::post('/import', [App\Http\Controllers\ClassroomController::class, 'import'])->name('classroom.import');
     Route::post('/delete/{id}', [App\Http\Controllers\ClassroomController::class, 'delete'])->name('classroom.delete');
     Route::post('/restore/{id}', [App\Http\Controllers\ClassroomController::class, 'restore'])->name('classroom.restore');
+    Route::post('/approve/{id}', [App\Http\Controllers\ClassroomController::class, 'approve'])->name('classroom.approve');
 });
 
 // Students

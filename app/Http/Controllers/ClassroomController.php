@@ -69,6 +69,16 @@ class ClassroomController extends Controller
         return view('status')->with('message', 'Class successfully restored.');
     }
 
+    public function approve(Request $request, $id)
+    {
+        $classroom = Classroom::where('id', $id)->first();
+
+        $classroom->approved = $request->approved ? $request->approved : 0;
+        $classroom->save();
+
+        return view('status')->with('message', $request->approved ? 'Classroom approved.' : 'Classroom disabled.');
+    }
+
     public function import(Request $request)
     {
         try
