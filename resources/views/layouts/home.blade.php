@@ -97,8 +97,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <img width="250" src="{{ asset('pai-logo.png') }}">
-                        
+                        <img width="250" src="{{ asset('pai-logo.png') }}">               
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
@@ -141,7 +140,7 @@
 
             <small class="ml-2">
                 <a class="text-dark" href="/terms" target="_blank">
-                    Terms and Conditions
+                    Terms
                 </a> 
             </small>
         </div>
