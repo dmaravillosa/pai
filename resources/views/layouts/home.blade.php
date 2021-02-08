@@ -140,7 +140,7 @@
 
             <small class="ml-2">
                 <a class="text-dark" href="/terms" target="_blank">
-                    Terms
+                    Terms and Conditions
                 </a> 
             </small>
         </div>
