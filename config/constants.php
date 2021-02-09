@@ -15,10 +15,11 @@ return [
         4 => 'Araling Panlipunan',
         5 => 'Edukasyon sa Pagpapakatao',
         6 => 'Mother Tongue',
-        7 => 'Music',
-        8 => 'Arts',
-        9 => 'PE',
-        10 => 'Health'
+        7 =>  'EPP',
+        8 => 'Music',
+        9 => 'Arts',
+        10 => 'PE',
+        11 => 'Health'
     ],
 
     'quarters' => [
@@ -40,7 +41,8 @@ return [
         'Music' => 'Sir Jerico T. Santos',
         'Arts' => 'Sir Jerico T. Santos',
         'Pe' => 'Sir Jerico T. Santos',
-        'Health' => 'Sir Jerico T. Santos'
+        'Health' => 'Sir Jerico T. Santos',
+        'Epp' => 'Ms. Daina Marie A. Roma'
     ],
 
     'months' => [
