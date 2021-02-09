@@ -16,10 +16,7 @@ return [
         5 => 'Edukasyon sa Pagpapakatao',
         6 => 'Mother Tongue',
         7 =>  'EPP',
-        8 => 'Music',
-        9 => 'Arts',
-        10 => 'PE',
-        11 => 'Health'
+        8 => 'MAPEH',
     ],
 
     'quarters' => [
@@ -38,10 +35,7 @@ return [
         'Araling Panlipunan' => 'Ms. Aileen B. Villanueva',
         'Science' => 'Ms. Katrina A. Ocampo',
         'Edukasyon Sa Pagpapakatao' => 'Ms. Geenie G. Ramos',
-        'Music' => 'Sir Jerico T. Santos',
-        'Arts' => 'Sir Jerico T. Santos',
-        'Pe' => 'Sir Jerico T. Santos',
-        'Health' => 'Sir Jerico T. Santos',
+        'Mapeh' => 'Sir Jerico T. Santos',
         'Epp' => 'Ms. Daina Marie A. Roma'
     ],
 
