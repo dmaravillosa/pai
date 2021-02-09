@@ -54,6 +54,7 @@ Route::prefix('classroom')->group(function () {
 Route::prefix('students')->group(function () {
     Route::get('/view/{id}', [App\Http\Controllers\StudentController::class, 'view'])->name('students.view');
     Route::get('/list', [App\Http\Controllers\StudentController::class, 'list'])->name('students.list');
+    Route::get('/all', [App\Http\Controllers\StudentController::class, 'all'])->name('students.all');
     Route::get('/lock/{id}/{unlock?}', [App\Http\Controllers\StudentController::class, 'lock'])->name('students.lock');
     Route::post('/unlock/{id}', [App\Http\Controllers\StudentController::class, 'unlock'])->name('students.unlock');
     Route::post('/update/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('students.update');
