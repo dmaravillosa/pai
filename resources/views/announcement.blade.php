@@ -91,7 +91,7 @@
                                 </div>
                             </td>
                             <td colspan="7">
-                                <div class="m-3 text-left">
+                                <div class="m-3 text-left text-break">
                                     {{ $event->description }}
                                 </div>
                             </td>
