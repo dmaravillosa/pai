@@ -14,9 +14,9 @@ return [
         3 => 'Science',
         4 => 'Araling Panlipunan',
         5 => 'Edukasyon sa Pagpapakatao',
-        6 => 'Mother Tongue',
-        7 =>  'EPP',
-        8 => 'MAPEH',
+        6 => 'EPP',
+        7 =>  'MAPEH',
+        //8 => 'MAPEH',
     ],
 
     'quarters' => [
@@ -28,7 +28,7 @@ return [
     ],
 
     'teachers' => [
-        'Mother Tongue' => 'Ms. Katrina A. Ocampo',
+        //'Mother Tongue' => 'Ms. Katrina A. Ocampo',
         'Filipino' => 'Ms. Daina Marie A. Roma',
         'English' => 'Ms. Marie Sean A. Barbacena',
         'Mathematics' => 'Ms. Leizl R. Mercado',

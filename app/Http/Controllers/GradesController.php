@@ -49,8 +49,8 @@ class GradesController extends Controller
                 $gen_ave += $grade->grade;
             }
         }
-        $gen_ave = $gen_ave / count(config('constants.subjects'));
-        //$gen_ave = $gen_ave / 12;
+        //$gen_ave = $gen_ave / count(config('constants.subjects'));
+        $gen_ave = $gen_ave / 8;
 
         $core_values = [];
         foreach($student->core_values as $core_value)
