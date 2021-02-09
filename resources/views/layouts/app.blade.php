@@ -122,7 +122,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
                                         <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Admin Panel')  }}</a>
-                                        <a class="dropdown-item" href="{{ route('students.list') }}">{{ __('Student Passwords')  }}</a>
+                                        <a class="dropdown-item" href="{{ route('students.all') }}">{{ __('Student Passwords')  }}</a>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

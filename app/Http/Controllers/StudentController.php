@@ -31,6 +31,7 @@ class StudentController extends Controller
     {
         $config = SchoolYearConfig::where('is_active', 1)->first();
         $students = Student::with('classroom')->get();
+
         foreach($students as $key => $student)
         {
             if($student->classroom->school_year != $config->school_year || !$student->classroom->approved)
@@ -43,6 +44,20 @@ class StudentController extends Controller
         {
              return strtolower(preg_replace("/[\W\d_]/i", '', $item->name)) == strtolower(preg_replace("/[\W\d_]/i", '', $request->filter));
         });
+
+        return view('student.view')
+            ->with('students', $students);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all(Request $request)
+    {
+        $config = SchoolYearConfig::where('is_active', 1)->first();
+        $students = Student::with('classroom')->get();
 
         return view('student.view')
             ->with('students', $students);
