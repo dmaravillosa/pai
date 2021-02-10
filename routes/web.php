@@ -32,6 +32,7 @@ Route::get('/', [App\Http\Controllers\PageController::class, 'events'])->name('e
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::get('/terms', [App\Http\Controllers\PageController::class, 'terms'])->name('terms');
+Route::get('/privacy', [App\Http\Controllers\PageController::class, 'privacy'])->name('privacy');
 
 // Teachers
 Route::prefix('teachers')->group(function () {

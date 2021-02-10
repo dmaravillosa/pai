@@ -141,7 +141,8 @@
                 </a> 
             </small>
 
-            <small class="ml-2">
+            <!--<small class="ml-2">-->
+            <small class="border-right border-dark pr-1">
                 <a class="text-dark" href="/terms" target="_blank">
                     Terms and Agreement
                 </a> 
