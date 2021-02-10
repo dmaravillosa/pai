@@ -24,6 +24,8 @@
         If copies of grades are needed for official record to be submitted, please contact the school at quelizasheryl@gmail.com or reach us at (02) 997-2894 to request the official copy of form138. Printed copy of grades from the website cannot be used as official copy of form138.
         <br><br>
         Papaya Academy is committed to protect the privacy rights of individuals on personal information pursuant to the provisions of the Data Privacy Act of 2012, its Implementing Rules and Regulations and other relevant issuances.
+        <br><br>
+        All employees, parents and school staff are enjoined to comply with and to share in the responsibility to secure and protect personal information collected and processed by Papaya Acedemy in pursuit of legitimate purposes.
     </p>
 
     <br>
