@@ -312,9 +312,18 @@
         
         if(month[1] == 'days')
         {
-            $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
-                $('#toast_success').toast('show');
-            });
+            if(input.value > 31)
+            {
+                $('#toast_message').text('Total school days should not exceed 31 days.');
+                $('#toast_error').toast('show');
+                $('#' + input.name).val('');
+            }
+            else
+            {
+                $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
+                    $('#toast_success').toast('show');
+                });
+            }
         }
         else if(month[1] == 'present')
         {
