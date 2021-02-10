@@ -37,7 +37,6 @@
     <p style="text-align:justify">
         To the maximum extent allowed by law, Papaya Academy may use personal data of its students and employees to pursue its objectives. In particular, the personal data collected by Papaya Academy shall be used, among others, to: to monitor and report on the students' progress.
         <br><br>
-        All employees, parents and school staff are enjoined to comply with and to share in the responsibility to secure and protect personal information collected and processed by Papaya Acedemy in pursuit of legitimate purposes.
     </p>
     <br><br><br><br><br><br><br><br><br><br> 
 </div>
