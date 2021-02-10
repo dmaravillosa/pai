@@ -30,11 +30,11 @@ class HomeController extends Controller
     {
         if($request->archived)
         {
-            $users = User::orderBy('created_at', 'desc')->onlyTrashed()->get();
+            $users = User::where('role', '!=', 'Administrator')->orderBy('created_at', 'desc')->onlyTrashed()->get();
         }
         else
         {
-            $users = User::orderBy('created_at', 'desc')->get();
+            $users = User::where('role', '!=', 'Administrator')->orderBy('created_at', 'desc')->get();
         }
         
         $config = SchoolYearConfig::where('is_active', 1)->first();
