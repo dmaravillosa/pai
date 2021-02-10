@@ -146,6 +146,14 @@
                     Terms and Agreement
                 </a> 
             </small>
+
+            <!--added Privacy Policy-->
+            <small class="ml-2">
+                <a class="text-dark" href="/privacy" target="_blank">
+                    Privacy Policy
+                </a> 
+            </small>
+            <!--end-->
         </div>
     </div>
 </body>
