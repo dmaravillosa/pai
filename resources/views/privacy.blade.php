@@ -17,8 +17,8 @@
 
 <div class="col-md-10 mt-3">
     <h3>Privacy Policy</h3>
-    <h5>Accounts</h5>
     <br>
+    <h5>Accounts</h5>
     <h5>
         WHAT PERSONAL DATA WE STORE
     </h5>
