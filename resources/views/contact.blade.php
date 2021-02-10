@@ -36,6 +36,7 @@
         Telephone #: (02) 997-2894 <br>
         Facebook Page: <span class="text-primary"> <a target="_blank" href="https://www.facebook.com/papayaacademy">https://www.facebook.com/papayaacademy</a></span>
     </p>
+    <br><br><br><br><br><br><br><br><br>
 </div>
 
 @endsection
