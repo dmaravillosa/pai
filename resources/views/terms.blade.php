@@ -16,7 +16,7 @@
 </div>
 
 <div class="col-md-10 mt-3">
-    <h3>Terms and Conditions</h3>
+    <h3>Terms and Agreement</h3>
     <h5>Accounts</h5>
     <p style="text-align:justify">
         You are responsible for maintaining the confidentiality of the password provided to you by the school and are fully responsible for all activities that occur under your Account such as viewing and printing the grades of the student. You agree to immediately notify the school principal or the student's adviser of any unauthorized use, or suspected unauthorized use of your Account or any other breach of security through messaging the adviser or the school principal (quelizasheryl@gmail.com). Papaya Academy cannot and will not be liable for any loss or damage arising from your failure to comply with the above requirements.
