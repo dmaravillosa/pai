@@ -238,16 +238,18 @@
                     <tr>
                         <td>No. of days absent</td>
                         @foreach(config('constants.months') as $month)
-                            @guest
+                            <!-- @guest
                                 <td> {{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '-' }} </td>
                             @else
                                 <td>
                                     <input onchange="updateAttendance(this);" type="text" id="{{ $month . '_' . 'absent'}}" name="{{ $month . '_' . 'absent'}}" value="{{ isset($attendances[$month . '_absent']) ? $attendances[$month . '_absent'] : '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" />
                                 </td>
                                 
-                            @endguest
+                            @endguest -->
+
+                            <td id="{{ $month . '_' . 'absent'}}" class="text-left"> {{ isset($attendances[$month . '_days']) ? $attendances[$month . '_days'] - (isset($attendances[$month . '_present']) ? $attendances[$month . '_present'] : $attendances[$month . '_days']) : '-' }} </td>
                         @endforeach
-                        <td>{{ isset($attendances['absent_total']) ? $attendances['absent_total'] : '-' }}</td>
+                        <td id="total_absent">-</td>
                     </tr>
                 </tbody>
             </table>
@@ -294,6 +296,7 @@
 
     $(document).ready(function(){
         // $('.toast').toast('show');
+        totalAbsent();
     });
 
     function updateCore(select)
@@ -327,7 +330,6 @@
         }
         else if(month[1] == 'present')
         {
-            console.log($('#' + month[0] + '_days').val());
             if(input.value > Number($('#' + month[0] + '_days').val()))
             {
                 $('#toast_message').text('Days present exceed school days. ');
@@ -338,6 +340,8 @@
             {
                 $.post("/api/attendance/update", {student_id: student_id, name: input.name, value: input.value}, function(data, status){
                     $('#toast_success').toast('show');
+                    $('#' + month[0] + '_absent').html( $('#' + month[0] + '_days').val() - input.value );
+                    totalAbsent();
                 });
             }
         }
@@ -362,6 +366,32 @@
     function printThis()
     {
         window.print();
+    }
+
+    function totalAbsent()
+    {
+        var months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+        var total = 0;
+        $.each(months, function( index, value ) {
+            
+            total += Number($('#' + value + '_absent').text() != ' - ' ? $('#' + value + '_absent').text() : 0);
+            // console.log($('#' + value + '_absent').text() != ' - ' ? $('#' + value + '_absent').text() : 0);
+        });
+        // console.log(total);
+        $('#total_absent').html(total);
     }
 
 </script>
