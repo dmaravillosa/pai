@@ -327,8 +327,8 @@
         }
         else if(month[1] == 'present')
         {
-            console.log(input.value , +$('#' + month[0] + '_days').val());
-            if(input.value > $('#' + month[0] + '_days').val())
+            console.log($('#' + month[0] + '_days').val());
+            if(input.value > Number($('#' + month[0] + '_days').val()))
             {
                 $('#toast_message').text('Days present exceed school days. ');
                 $('#toast_error').toast('show');
