@@ -24,6 +24,7 @@ class GradesController extends Controller
             $student->seen = 1;
             $student->save();
         }
+        dd($student);
         
         $teacher = User::where('id', $student->classroom->user_id)->first()->name;
 
