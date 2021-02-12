@@ -105,6 +105,11 @@ class ClassroomController extends Controller
                     return view('status')->with('message', 'Please check your section data. File: (' . $file->getClientOriginalName() . ')'); 
                 }
 
+                if($config->school_year != $collection[5][7][22])
+                {
+                    return view('status')->with('message', 'Wrong school year, please check grade sheet. File: (' . $file->getClientOriginalName() . ')');
+                }
+
                 //create classroom
                 $classroom = Classroom::firstOrCreate([
                     'level' => $grade_section[0],

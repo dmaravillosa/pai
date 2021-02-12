@@ -30,15 +30,15 @@ class HomeController extends Controller
     {
         if($request->archived)
         {
-            $users = User::where('role', '!=', 'Administrator')->orderBy('created_at', 'desc')->onlyTrashed()->get();
+            $users = User::where('role', '!=', 'Administrator')->where('name', 'like', '%' . $request->filter . '%')->orderBy('created_at', 'desc')->onlyTrashed()->get();
         }
         else
         {
-            $users = User::where('role', '!=', 'Administrator')->orderBy('created_at', 'desc')->get();
+            $users = User::where('role', '!=', 'Administrator')->where('name', 'like', '%' . $request->filter . '%')->orderBy('created_at', 'desc')->get();
         }
         
         $config = SchoolYearConfig::where('is_active', 1)->first();
-        $school_years = SchoolYearConfig::all();
+        $school_years = SchoolYearConfig::orderByRaw('SUBSTR(school_year, 1, 4) DESC')->get();
 
         // dd($users->toArray());
         return view('admin')
@@ -56,7 +56,7 @@ class HomeController extends Controller
     public function announcement(Request $request)
     {
         $config = SchoolYearConfig::where('is_active', 1)->first();
-        $school_years = SchoolYearConfig::all();
+        $school_years = SchoolYearConfig::orderByRaw('SUBSTR(school_year, 1, 4) DESC')->get();
 
         if($request->archived)
         {
@@ -84,28 +84,28 @@ class HomeController extends Controller
     public function classess(Request $request)
     {
         $config = SchoolYearConfig::where('is_active', 1)->first();
-        $school_years = SchoolYearConfig::all();
+        $school_years = SchoolYearConfig::orderByRaw('SUBSTR(school_year, 1, 4) DESC')->get();
 
         if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
         {
             if($request->archived)
             {
-                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->onlyTrashed()->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('name', 'like', '%' . $request->filter . '%')->onlyTrashed()->get();
             }
             else
             {
-                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('name', 'like', '%' . $request->filter . '%')->get();
             }
         }
         else
         {
             if($request->archived)
             {
-                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->onlyTrashed()->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('name', 'like', '%' . $request->filter . '%')->where('user_id', auth()->user()->id)->onlyTrashed()->get();
             }
             else
             {
-                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('user_id', auth()->user()->id)->get();
+                $classrooms = Classroom::with(['students', 'user'])->where('school_year', $config->school_year)->where('name', 'like', '%' . $request->filter . '%')->where('user_id', auth()->user()->id)->get();
             }
         }
 

@@ -30,7 +30,8 @@ class StudentController extends Controller
     public function list(Request $request)
     {
         $config = SchoolYearConfig::where('is_active', 1)->first();
-        $students = Student::with('classroom')->get();
+        $students = Student::with('classroom')->withTrashed()->get();
+        
 
         foreach($students as $key => $student)
         {

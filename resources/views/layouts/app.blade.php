@@ -128,6 +128,8 @@
                                         <a class="dropdown-item" href="{{ route('students.all') }}">{{ __('Student Passwords')  }}</a>
                                     @endif
 
+                                    <a class="dropdown-item" href="{{ url('teachers/edit/' . auth()->user()->id) }}">{{ __('Edit Profile')  }}</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

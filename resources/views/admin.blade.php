@@ -41,7 +41,7 @@
             <hr>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-8">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" href="/admin">
@@ -56,10 +56,22 @@
                 </li>
             </ul>
         </div>
-
-        <div class="col-md-2 text-right">
-            <a class="btn btn-success" href="/register"><i class="fas fa-plus"></i> Create User</a>
+        
+        <div class="col-md-4">
+            <form action="/admin" method="GET">
+                <div class="input-group">
+                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Classroom">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary rounded ml-2"><i class="fas fa-search"></i></button>
+                        &nbsp;
+                    </div>
+                    <a class="btn btn-danger" href="/admin"><i class="fas fa-sync-alt"></i></a>
+                    &nbsp;
+                    <a class="btn btn-success" href="/register"><i class="fas fa-plus"></i> Create User</a>
+                </div>
+            </form>
         </div>
+
         
         <div class="col-md-12 mt-3">
             <table class="table bg-white text-center">
