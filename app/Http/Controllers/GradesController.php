@@ -25,7 +25,7 @@ class GradesController extends Controller
             $student->save();
         }
         
-        $teacher = User::where('id', $student->classroom()->first()->user_id)->first()->name;
+        $teacher = User::where('id', $student->classroom->user_id)->first()->name;
 
         $config = SchoolYearConfig::where('is_active', 1)->first();
 
