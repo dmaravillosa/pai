@@ -18,13 +18,12 @@ class GradesController extends Controller
      */
     public function view($id)
     {
-        $student = Student::with(['grades', 'classroom', 'core_values', 'attendance'])->where('id', $id)->first();
+        $student = Student::with(['grades', 'classroom', 'core_values', 'attendance'])->where('id', $id)->withTrashed()->first();
         if(auth()->user() == null)
         {
             $student->seen = 1;
             $student->save();
         }
-        dd($student);
         
         $teacher = User::where('id', $student->classroom->user_id)->first()->name;
 
