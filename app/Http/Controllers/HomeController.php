@@ -86,7 +86,7 @@ class HomeController extends Controller
         $config = SchoolYearConfig::where('is_active', 1)->first();
         $school_years = SchoolYearConfig::orderByRaw('SUBSTR(school_year, 1, 4) DESC')->get();
 
-        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar')
         {
             if($request->archived)
             {
@@ -139,7 +139,7 @@ class HomeController extends Controller
     public function index()
     {
         $config = SchoolYearConfig::where('is_active', 1)->first();
-        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar')
         {
             $classrooms = Classroom::with('students')->where('school_year', $config->school_year)->get();
         }

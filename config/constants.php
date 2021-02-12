@@ -4,7 +4,8 @@ return [
     'roles' => [
         'Administrator',
         'Principal',
-        'Teacher'
+        'Teacher',
+        'Registrar'
     ],
 
     'subjects' => [

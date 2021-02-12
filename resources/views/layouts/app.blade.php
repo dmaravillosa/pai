@@ -123,7 +123,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
+                                    @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar')
                                         <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Admin Panel')  }}</a>
                                         <a class="dropdown-item" href="{{ route('students.all') }}">{{ __('Student Passwords')  }}</a>
                                     @endif

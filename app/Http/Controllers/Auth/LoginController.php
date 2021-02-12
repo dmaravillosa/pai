@@ -46,7 +46,7 @@ class LoginController extends Controller
         $user->last_login = date('Y-m-d');
         $user->save();
         
-        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal'){
+        if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar'){
             return '/admin';
         }
 

@@ -42,7 +42,7 @@
             <hr>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Users</a>
@@ -56,7 +56,7 @@
             </ul>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <form action="/classess" method="GET">
                 <div class="input-group">
                     <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Classroom">
@@ -65,6 +65,8 @@
                         &nbsp;
                     </div>
                     <a class="btn btn-danger" href="/classess"><i class="fas fa-sync-alt"></i></a>
+                    &nbsp;
+                    <a class="btn btn-success" href="/classroom/view"><i class="fas fa-plus"></i> Create Classes</a>
                 </div>
             </form>
         </div>

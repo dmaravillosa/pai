@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ClassroomImport;
 use App\Models\Classroom;
+use App\Models\User;
 use App\Models\Grade;
 use App\Models\SchoolYearConfig;
 use App\Models\Student;
@@ -25,7 +26,8 @@ class ClassroomController extends Controller
 
     public function view()
     {
-        return view('classroom.view');
+        $teachers = User::where('role', 'Teacher')->get();
+        return view('classroom.view')->with('teachers', $teachers);
     }
 
     public function delete($id)
@@ -115,7 +117,7 @@ class ClassroomController extends Controller
                     'level' => $grade_section[0],
                     'name' => $grade_section[1],
                     'school_year' => $config->school_year,
-                    'user_id' => auth()->user()->id
+                    'user_id' => isset($request->teacher) ? $request->teacher : auth()->user()->id
                 ]);
 
                 for($x = 0; $x < count($collection[5]); ++$x){

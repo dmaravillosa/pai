@@ -6,7 +6,7 @@
         <div class="col-md-12 mt-2">
             <div class="row">
                 <div class="col-md-3 mt-2">
-                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' ? '/classess' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ isset(auth()->user()->id) ? (auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar' ? '/classess' : '/home') : '/' }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-6 mt-2 text-center">
                     <h4>Student List</h4>
@@ -53,13 +53,13 @@
         <table class="table bg-white">
             <thead>
                 <tr>
-                    <th scope="col" colspan="7">Student</th>
+                    <th scope="col" colspan="4">Student</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col" class="text-center">Grade</th>
+                    <th scope="col" class="text-center">Section</th>
+                    <th scope="col" class="text-center">School Year</th>
                     <th scope="col" class="text-center">Status</th>
                     <th scope="col" class="text-center">Actions</th>
                 </tr>
@@ -68,14 +68,14 @@
                 @forelse($students as $student)
                     <tr>
                         @auth
-                            @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal')
-                                <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                            @if(auth()->user()->role == 'Administrator' || auth()->user()->role == 'Principal' || auth()->user()->role == 'Registrar')
+                                <td colspan="4"><h4 class="mt-2">{{ $student->name }}</h4></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->level }}</h4></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->name }}</h4></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->school_year }}</h4></td>
                                 <td class="text-center">
                                     <div class="m-2">
                                         (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
@@ -89,13 +89,13 @@
                                     <a href="/students/lock/{{ $student->id }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
                                 </td>
                             @else
-                                <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                                <td colspan="4"><h4 class="mt-2">{{ $student->name }}</h4></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->level }}</h4></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->name }}</h4></td>
+                                <td><h4 class="text-center mt-2">{{ $student->classroom->school_year }}</h4></td>
                                 <td class="text-center">
                                     <div class="m-2">
                                         (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>)
@@ -110,13 +110,13 @@
                                 </td>
                             @endif
                         @else
-                            <td colspan="7"><h4 class="mt-2">{{ $student->name }}</h4></td>
+                            <td colspan="4"><h4 class="mt-2">{{ $student->name }}</h4></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><h4 class="text-center mt-2">{{ $student->classroom->level }}</h4></td>
+                            <td><h4 class="text-center mt-2">{{ $student->classroom->name }}</h4></td>
+                            <td><h4 class="text-center mt-2">{{ $student->classroom->school_year }}</h4></td>
                             <td class="text-center">
                                 <div class="m-2">
                                     (<i class="fas fa-{{ $student->password ? 'lock' : 'unlock' }} fa-sm"></i>) 
