@@ -19,7 +19,12 @@
         <div class="col-md-12 text-center">
             <form method="post" action="/corevalue/import" enctype="multipart/form-data">
             <input type="hidden" name="student_id" value="{{$student_id}}">
-            <p class="text-primary">*Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="text-primary">
+                <br> 1. Advisers must have the excel file of the core values rating of the student selected.
+                <br> 2. Click the <i>Choose File</i> button to select the file you want to upload. (the electronic file must be in xlsx file format)
+                <br> 3. After selecting the file you wand to upload, click the <i>submit</i> button. (select only one file)
+                <br> 4. A message notification that says "Core Values uploaded successfully!" will appear once the grade sheet is uploaded successfully.
+            </p>
             @csrf
                 <div class="row bg-white border rounded p-3">
                     <div class="col-md-12 text-center mb-2">
