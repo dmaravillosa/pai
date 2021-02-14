@@ -19,7 +19,8 @@ class Student extends Model
         'name',
         'classroom_id',
         'password',
-        'remarks'
+        'remarks',
+        'student_code'
     ];
 
     public function classroom()

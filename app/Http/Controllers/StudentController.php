@@ -82,7 +82,7 @@ class StudentController extends Controller
 
     public function unlock(Request $request, $id)
     {
-        $student = Student::where('id', $id)->first();
+        $student = Student::where('id', $id)->withTrashed()->first();
 
 
         if(Hash::check($request->password, $student->password, []))

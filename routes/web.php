@@ -83,3 +83,10 @@ Route::prefix('syc')->group(function () {
     Route::post('/store/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'store'])->name('syc.store');
     Route::post('/update/{id}', [App\Http\Controllers\SchoolYearConfigController::class, 'update'])->name('syc.update');
 });
+
+//SchoolYearConfig
+Route::prefix('corevalue')->group(function () {
+    Route::get('/{student_id}', [App\Http\Controllers\CoreValueController::class, 'index'])->name('corevalue.index');
+    Route::post('/import', [App\Http\Controllers\CoreValueController::class, 'import'])->name('corevalue.import');
+});
+

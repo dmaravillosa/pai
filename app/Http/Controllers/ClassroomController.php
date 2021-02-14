@@ -163,6 +163,7 @@ class ClassroomController extends Controller
                         
                             //create student if does not exist
                             $student = Student::firstOrCreate([
+                                'student_code' => $collection[5][$x][0] . str_replace([' ', '.', ','], '', $collection[5][$x][1]),
                                 'name' => $collection[5][$x][1],
                                 'classroom_id' => $classroom->id
                             ]);

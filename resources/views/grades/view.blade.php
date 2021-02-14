@@ -165,6 +165,7 @@
         </div>
 
         <div class="col-md-4">
+            <a class="btn btn-primary" href="/corevalue/{{$student->id}}"><i class="fas fa-plus"></i> Upload Core Value</a>
             <table class="table table-borderless" id="section-to-print">
                 <thead>
                     <tr>
