@@ -122,6 +122,12 @@ class CoreValueController extends Controller
         
         $collection = Excel::toArray(new CoreValueImport,  $file);
 
+        // dd($collection[0][1][0] != 'Core Values');
+        if($collection[0][1][0] != 'Core Values')
+        {
+            return view('status')->with('message', 'Wrong excel format please check your file.  File: (' . $file->getClientOriginalName() . ')'); 
+        }
+
         $corevalues = array_slice($collection[0], 2);
 
         for($index = 0; $index < count($corevalues); $index++)
