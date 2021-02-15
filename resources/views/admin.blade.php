@@ -60,7 +60,7 @@
         <div class="col-md-4">
             <form action="/admin" method="GET">
                 <div class="input-group">
-                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="Users">
+                    <input type="text" name="filter" class="form-control" style="border-radius: 50px;" placeholder="User">
                     <div class="input-group-append">
                         <button class="btn btn-primary rounded ml-2"><i class="fas fa-search"></i></button>
                         &nbsp;
