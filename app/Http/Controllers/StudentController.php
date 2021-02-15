@@ -35,7 +35,8 @@ class StudentController extends Controller
 
         foreach($students as $key => $student)
         {
-            if($student->classroom->school_year != $config->school_year || !$student->classroom->approved)
+            // if($student->classroom->school_year != $config->school_year || !$student->classroom->approved)
+            if(!$student->classroom->approved)
             {
                 $students->forget($key);
             }

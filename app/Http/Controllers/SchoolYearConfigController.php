@@ -45,8 +45,11 @@ class SchoolYearConfigController extends Controller
         $syc->is_active = 0;
         $syc->save();
 
+        $latest_syc = SchoolYearConfig::orderBy('school_year', 'DESC')->first();
+        $latest_syc = explode('-', $latest_syc->school_year);
+
         $new_syc = SchoolYearConfig::create([
-            'school_year' => ($school_year[0] + 1) . '-' . ($school_year[1] + 1),
+            'school_year' => ($latest_syc[0] + 1) . '-' . ($latest_syc[1] + 1),
             'quarter' => 1,
             'is_active' => 1
         ]);
