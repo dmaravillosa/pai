@@ -22,8 +22,15 @@
                 <br> 1. Advisers must have a soft copy of the School Form (Downloaded from LIS).
                 <br> 2. Click the <i>Choose Files</i> button to select the file you want to upload. (the electronic file must be in xlsx file format)
                 <br> 3. After selecting the file/s you wand to upload, click the <i>submit</i> button.
-                <br> 4. A message notification that says "Excel grade upload successful" will appear once the grade sheet is uploaded successfully.
+                <br> 4. A message notification that says "Excel grade upload successful" will appear once the grade sheet is uploaded successfully. 
             </p>
+            <p class="text-primary"><b>Important Reminders</b>
+                <br> - Keep the students' nmae from first quarter to fourth quarter in the input data sheet. Do not delete the name of the students who transferred out/ dropped out.
+                <br> - Always make sure that the names of the students are in correct format. (E.g. Cruz, Juan A.)
+                <br> - The School Year field should have data in this format "20xx-20xx". Input the numbers and dash without spaces.
+                <br> - Always input data in the grade and section field with the correct format. (E.g. 6 - Diamond) 
+            </p>
+            
             @csrf
                 <div class="row bg-white border rounded p-3">
                     <div class="col-md-12 text-center mb-2">
@@ -47,7 +54,7 @@
             </form>
             
         </div>
-            
+        <h6><br><br>If you're having trouble uploading the file, please contact the principal.</h6>
     </div>
 </div>
 @endsection
