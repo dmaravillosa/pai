@@ -6,6 +6,7 @@ use App\Models\CoreValue;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;    
 use App\Imports\CoreValueImport;
+use Exception;
 
 class CoreValueController extends Controller
 {
@@ -120,46 +121,53 @@ class CoreValueController extends Controller
             return view('status')->with('message', 'Wrong grade sheet please check your excel.  File: (' . $file->getClientOriginalName() . ')'); 
         }
         
-        $collection = Excel::toArray(new CoreValueImport,  $file);
-
-        // dd($collection[0][1][0] != 'Core Values');
-        if($collection[0][1][0] != 'Core Values')
+        try
         {
-            return view('status')->with('message', 'Wrong excel format please check your file.  File: (' . $file->getClientOriginalName() . ')'); 
-        }
+            $collection = Excel::toArray(new CoreValueImport,  $file);
 
-        $corevalues = array_slice($collection[0], 2);
-
-        for($index = 0; $index < count($corevalues); $index++)
-        {
-            // echo  $corevalues[$index][0] ? $corevalues[$index][0] : $corevalues[($index - 1)][0];
-            for($quarter = 0; $quarter < 4; $quarter++){
-                $coreValue = CoreValue::where('student_id', $request->student_id)
-                                ->where('core_value', $corevalues[$index][0] ? strtolower($corevalues[$index][0]) : strtolower($corevalues[($index - 1)][0]))
-                                ->where('type', $corevalues[$index][0] ? 1 : 2)
-                                ->where('quarter', ($quarter + 1))
-                                ->first();
-
-                if($coreValue)
-                {
-                    $coreValue->score = strtolower($corevalues[$index][($quarter + 2)]);
-                    $coreValue->save();
-                }
-                else
-                {
-                    $coreValue = CoreValue::create([
-                        'student_id' => $request->student_id,
-                        'core_value' => $corevalues[$index][0] ? strtolower($corevalues[$index][0]) : strtolower($corevalues[($index - 1)][0]),
-                        'type' => $corevalues[$index][0] ? 1 : 2,
-                        'score' => strtolower($corevalues[$index][($quarter + 2)]),
-                        'quarter' => ($quarter + 1)
-                    ]);
-                }   
+            // dd($collection[0][1][0] != 'Core Values');
+            if($collection[0][1][0] != 'Core Values')
+            {
+                return view('status')->with('message', 'Wrong excel format please check your file.  File: (' . $file->getClientOriginalName() . ')'); 
             }
-            
-        }
 
-        return view('status')->with('message', 'Core Values uploaded successfully!');
+            $corevalues = array_slice($collection[0], 2);
+
+            for($index = 0; $index < count($corevalues); $index++)
+            {
+                // echo  $corevalues[$index][0] ? $corevalues[$index][0] : $corevalues[($index - 1)][0];
+                for($quarter = 0; $quarter < 4; $quarter++){
+                    $coreValue = CoreValue::where('student_id', $request->student_id)
+                                    ->where('core_value', $corevalues[$index][0] ? strtolower($corevalues[$index][0]) : strtolower($corevalues[($index - 1)][0]))
+                                    ->where('type', $corevalues[$index][0] ? 1 : 2)
+                                    ->where('quarter', ($quarter + 1))
+                                    ->first();
+
+                    if($coreValue)
+                    {
+                        $coreValue->score = strtolower($corevalues[$index][($quarter + 2)]);
+                        $coreValue->save();
+                    }
+                    else
+                    {
+                        $coreValue = CoreValue::create([
+                            'student_id' => $request->student_id,
+                            'core_value' => $corevalues[$index][0] ? strtolower($corevalues[$index][0]) : strtolower($corevalues[($index - 1)][0]),
+                            'type' => $corevalues[$index][0] ? 1 : 2,
+                            'score' => strtolower($corevalues[$index][($quarter + 2)]),
+                            'quarter' => ($quarter + 1)
+                        ]);
+                    }   
+                }
+                
+            }
+
+            return view('status')->with('message', 'Core Values uploaded successfully!');
+        }
+        catch(Exception $e)
+        {
+            return view('status')->with('message', 'There is something wrong with your excel sheet, please use the standard!');
+        }
         // return redirect('/grades/view/'.$request->student_id);
     }
 }
